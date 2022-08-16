@@ -1,0 +1,87 @@
+.container {
+    position: relative;
+    text-align: center;
+    color: white;
+  }
+.imgTxt{
+    position: absolute;
+    top:-5px;
+    color:floralwhite;
+    z-index: 1;
+    font-weight: bold;
+    display: flex;
+    justify-content:center;
+    align-items:center;
+    flex-direction: column;
+    left: 32%;
+    @media (min-width: 1000px){
+        font-size: 20px;
+        left: 28%;
+    }
+    @media (max-width: 1000px){
+        font-size: 16px;
+        left: 20%;
+    }
+    @media (max-width: 768px){
+        font-size: 10px;
+        left: 20%;
+    }
+    @media (max-width: 500px){
+        font-size: 10px;
+        left: 20%;
+    }
+    @media (max-width: 400px){
+        font-size: 8px;
+        left: 20%;
+    }
+    :nth-child(odd) {
+        margin-bottom: 5px;
+    }
+    :nth-child(even) {
+        margin-top: 10px;
+    }
+}
+.carousel{
+    display: flex;
+    justify-content: center;
+    align-items:flex-start;
+    margin:5px;
+    margin-bottom: 15px;
+    margin-top:-310px;
+    @media (min-width: 1250px){
+        margin-top:-310px;
+    }
+    @media (max-width: 1249px){
+        margin-top:-220px;
+    }
+    @media (max-width: 1000px){
+        margin-top:-160px;
+    }
+    @media (max-width: 768px){
+        margin-top:-120px;
+    }
+    @media (max-width: 500px){
+        margin-top:-60px;
+    }
+    @media (max-width: 400px){
+        margin-top:-45px;
+    }
+}
+.imgTxt {
+    -webkit-box-reflect: below -20px linear-gradient(transparent, rgba(0,0,0,.2));
+}
+.imgTxt p {
+    display: inline-block;
+    color: #fff;
+    animation: imgTxt 2.5s infinite;
+    animation-delay: calc(.1s * var(--i));
+    
+  }
+@keyframes imgTxt {
+    0%,40%,100% {
+      transform: translateY(0)
+    }
+    20% {
+      transform: translateY(-20px)
+    }
+  }
