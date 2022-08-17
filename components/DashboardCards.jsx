@@ -140,7 +140,7 @@ export default function DashboardCards(){
                                     background: {
                                         fill: 'red',
                                     },
-                            })} />;
+                            })} />
                             </div>
                         </div>
                         <div className={styles.col_right_down}>
