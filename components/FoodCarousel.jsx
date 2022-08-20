@@ -26,12 +26,12 @@ const images = [
   {
     label: 'Bali, Indonesia',
     imgPath:
-      'https://cdn-anofn.nitrocdn.com/jQDfetAYpBYbzUHaVHqshamjDuzDFbUZ/assets/static/optimized/rev-a16d04e/wp-content/uploads/2020/10/a1ynpdnxicl-sl1500.jpg',
+      'https://www.eatthis.com/wp-content/uploads/sites/4/2020/05/snacks-in-america.jpg?quality=82&strip=1',
   },
   {
     label: 'Goč, Serbia',
     imgPath:
-      'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSF8FGqCCIj9DBSC3CP1Gzylxj1L9pQBHEYrg&usqp=CAU',
+      'https://img.freepik.com/premium-vector/food-delivery-order-landing-page-template_143055-38.jpg',
   },
 ];
 
@@ -97,6 +97,7 @@ function FoodCarousel() {
         steps={maxSteps}
         position="static"
         activeStep={activeStep}
+        sx={{backgroundColor:"transparent"}}
         nextButton={
           <Button
             size="small"

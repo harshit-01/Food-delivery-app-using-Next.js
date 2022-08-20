@@ -31,7 +31,7 @@ export default function dashboard(){
                         </li>
                     <li onClick={()=>handleClick(2)}>
                         <Tooltip title="Helpline" placement="right" arrow>
-                            <a className={isActive === 2 ? styles.active:""} href="#contact"><HelpCenterIcon color= "primary" sx={{mr:2}}></HelpCenterIcon>
+                            <a className={isActive === 2 ? styles.active:""} href="/Dashboard/helpline"><HelpCenterIcon color= "primary" sx={{mr:2}}></HelpCenterIcon>
                             </a>
                         </Tooltip>
                     </li>

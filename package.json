@@ -16,11 +16,15 @@
     "@mui/material": "^5.10.0",
     "chart.js": "^3.9.1",
     "next": "12.2.5",
+    "next-images": "^1.8.4",
     "react": "18.2.0",
     "react-chartjs-2": "^4.3.1",
     "react-circular-progressbar": "^2.1.0",
     "react-dom": "18.2.0",
-    "react-swipeable-views": "^0.14.0"
+    "react-file-base64": "^1.0.3",
+    "react-swipeable-views": "^0.14.0",
+    "react-whatsapp-widget": "^2.1.0",
+    "ref-loader": "^1.0.3"
   },
   "devDependencies": {
     "@svgr/webpack": "^6.3.1",

@@ -189,7 +189,10 @@ const Navbar = () => {
             >
               {settings.map((setting) => (
                 <MenuItem key={setting} onClick={handleCloseUserMenu}>
-                  <Typography textAlign="center">{setting}</Typography>
+                  {/* <Typography textAlign="center">{setting}</Typography> */}
+                  <Link href= {setting !== 'Home'? `/${setting}` :'/'}>
+                    {setting}
+                  </Link>
                 </MenuItem>
               ))}
             </Menu>

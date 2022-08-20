@@ -136,18 +136,53 @@ export default function DashboardCards(){
                             <p style={{textAlign: 'center',fontWeight: 'bold',color: 'white',fontSize:18}}>Repeat customers</p>
                             <div style={{ width: 140, height: 140,margin:"auto"}}>
                                 <CircularProgressbar value={percentage} text={`${percentage}%`}
-                                style={buildStyles({
-                                    background: {
-                                        fill: 'red',
+                                className={styles.CircularProgressbar_text}
+                                styles={{
+                                    // Customize the root svg element
+                                    root: {},
+                                    // Customize the path, i.e. the "completed progress"
+                                    path: {
+                                      // Path color
+                                      stroke: 'rgb(27, 118, 160)',
+                                    //   stroke: `rgba(62, 152, 199, ${percentage / 100})`,
+                                      // Whether to use rounded or flat corners on the ends - can use 'butt' or 'round'
+                                      strokeLinecap: 'butt',
+                                      // Customize transition animation
+                                      transition: 'stroke-dashoffset 0.5s ease 0s',
+                                      // Rotate the path
+                                      transform: `rotate(${percentage}turn)`,
+                                      transformOrigin: 'center center',
                                     },
-                            })} />
+                                    // Customize the circle behind the path, i.e. the "total progress"
+                                    trail: {
+                                      // Trail color
+                                      stroke:"lightgray",
+                                      // Whether to use rounded or flat corners on the ends - can use 'butt' or 'round'
+                                      strokeLinecap: 'butt',
+                                      transform: `rotate(0.25turn)`,
+                                      // Rotate the trail
+                                      transformOrigin: 'center center',
+                                    },
+                                    // Customize the text
+                                    text: {
+                                      // Text color
+                                      fill: 'floralwhite',
+                                      // Text size
+                                      fontSize: '16px',
+                                    },
+                                    // Customize background - only used when the `background` prop is true
+                                    background: {
+                                      fill: '#3e98c7',
+                                    },
+                                  }}
+                        />
                             </div>
                         </div>
                         <div className={styles.col_right_down}>
                             <p className={styles.top_res}>Top Restaurants</p>
                             <div className={styles.para}>
-                                <p>1. SamosaWala (4.92/5.0)</p>
-                                <p>2. Tikki ChatCorner (4.90/5.0)</p>
+                                <p><i style={{color:"#FFDF00"}}>&#9733;</i> {" "}SamosaWala (4.92/5.0)</p>
+                                <p><i style={{color:"#FFDF00"}}>&#9733;</i> {" "}DosaWala (4.90/5.0)</p>
                             </div>
                         </div>
                         <div className={styles.col_right_up}>
@@ -166,7 +201,7 @@ export default function DashboardCards(){
                 </div>
                 <div className= {styles.row2}>
                     <div className={styles.col2_left}>
-                        <p style={{textAlign: 'center',fontWeight: 'bold'}}>Traffic on site</p>
+                        <p style={{textAlign: 'center',fontWeight: 'bold',marginBottom:"25px"}}>Traffic on site</p>
                         <Pie data={val} />
                     </div>
                     <div className={styles.col2_left}>
