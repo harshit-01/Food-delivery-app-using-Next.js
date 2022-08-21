@@ -15,11 +15,12 @@ import AdbIcon from '@mui/icons-material/Adb';
 import Image from 'next/image'
 import app_icon from "../asset/delivery_icon.png";
 import styles from '../styles/main.module.scss'
-const pages = ['Home','Dashboard','Menu','Plans','Reviews'];
-const settings = ['Profile','Dashboard','Groceries','Logout'];
 import Stack from '@mui/material/Stack';
 import Link from 'next/link'
+import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
 
+const pages = ['Home','Dashboard','Menu','Plans','Reviews'];
+const settings = ['Profile','Dashboard','Groceries','Logout'];
 
 const Navbar = () => {
   const [anchorElNav, setAnchorElNav] = React.useState(null);
@@ -85,6 +86,7 @@ const Navbar = () => {
               display: { xs: 'none', md: 'flex' },
               fontFamily: 'timesroman',
               textAlign:'center',
+              fontSize:"22px",
               fontWeight: 900,
               letterSpacing: '.2rem',
               color: 'inherit',
@@ -142,6 +144,7 @@ const Navbar = () => {
               display: { xs: 'flex', md: 'none' },
               justifyContent: { xs: 'center', md: 'none' },
               fontFamily: 'timesroman',
+              fontSize:"22px",
               fontWeight: 700,
               letterSpacing: '.2rem',
               color: 'inherit',
@@ -164,7 +167,23 @@ const Navbar = () => {
               </Button>
             ))}
           </Box>
-
+          <div style={{position:"relative",display:"flex",justifyContent:"center",alignItems:"center"}}>
+            <ShoppingCartIcon sx={{ mr:2}}>
+            </ShoppingCartIcon>
+            <div style={{
+                position:"absolute",
+                top:"-11px",
+                left:"17px",
+                width: "18px",
+                backgroundColor: "red",
+                borderRadius:"50%",
+                textAlign: "center",
+                fontSize:"12px",
+                padding:"2px"
+                }}>
+                2
+            </div>
+          </div>
           <Box sx={{ flexGrow: 0 }}>
             <Tooltip title="Open settings">
               <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
