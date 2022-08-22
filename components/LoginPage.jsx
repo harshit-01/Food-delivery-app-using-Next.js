@@ -90,7 +90,7 @@ export default function Login({changeLoginStatus}){
                             </div>
                             <p>{errors.password ?<>*{errors.password?.message}</>:null}</p>
                             <input type="submit"/>
-                            <Link href="/Signup"><span style={{color: "rgb(14, 104, 182)",fontWeight:"bold",cursor: "pointer"}}>Don't have an account? Signup here</span></Link>
+                            <Link href="/Signup"><span style={{color: "rgb(0, 86, 63)",fontWeight:"bold",cursor: "pointer"}}>Don't have an account? Signup here</span></Link>
                         </form>
                     </div>
                 </div>
