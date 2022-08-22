@@ -2,7 +2,7 @@ import {React, useState,useEffect} from 'react'
 import Image from 'next/image'
 import {useRouter} from 'next/router';
 import Link from 'next/link'
-import styles from "../styles/login.module.scss"
+import styles from "../styles/signup.module.scss"
 import { useForm } from "react-hook-form";
 import { yupResolver } from '@hookform/resolvers/yup';
 import * as yup from "yup";
@@ -16,10 +16,12 @@ const schema = yup.object({
                 .required('No password provided.') 
                 .min(6, 'Password is too short - should be 6 chars minimum.')
                 .max(15, 'Password is too lon - should be 15 chars maximum.')
-                .matches(/^([a-zA-Z0-9@*#]{6,15})$/, 'Password can only contain alphanumeric and special characters.')
+                .matches(/^([a-zA-Z0-9@*#]{6,15})$/, 'Password can only contain alphanumeric and special characters.'),
+    address: yup.string().required('No address provided.').matches(/^[a-zA-Z0-9\s,.'-]{3,}$/, 'Invalid Address Provided.'), 
+    // This regex accepts minimum three character and there is no limit on max characters. Characters may include a-z, A-Z alphabets, whitespace, comma(,), dot(.), apostrophe ('), and dash(-) symbols.
 }).required();
 
-export default function Login({changeLoginStatus}){
+export default function Signup({changeLoginStatus}){
     const router = useRouter();
     const [show,setShow] = useState(false);
     // const handleClick = (e) => {
@@ -29,7 +31,8 @@ export default function Login({changeLoginStatus}){
     const defaultValues = {
         firstName: "bill",
         lastName: "luo",
-        email: "a5@gmail.com"
+        email: "a5@gmail.com",
+        address:""
     };
     const { register, handleSubmit, formState:{ errors } } = useForm({
         resolver: yupResolver(schema),
@@ -43,9 +46,9 @@ export default function Login({changeLoginStatus}){
     // }, [isLoggedIn])
     const onSubmit = (data) => {
         if (typeof window !== "undefined" && data.email.length > 0 ) {
-            localStorage.setItem("loginStatus", true)  
+            localStorage.setItem("signupStatus", true)  
         }
-        changeLoginStatus();
+        changeSigupStatus();
         console.log(data);
     };
     const handleClick = (e)=>{
@@ -53,21 +56,21 @@ export default function Login({changeLoginStatus}){
     }
 
     return(
-        <div className={ styles.container } style={{display: 'flex',justifyContent: 'flex-start',alignItems: 'center'}}>
-            <div className={ styles.row1 } style={{backgroundColor:"#00563f",display: 'flex',justifyContent: 'center',alignItems: 'center',color:"floralwhite",fontStyle:"italic"}}>
-                <h1>
-                    <p style={{fontSize:"40px",textAlign:"center"}}>Welcome Back!</p>
-                    <p style={{fontSize:"18px",textAlign:"center"}}>Please log in with your personal information to connect.</p>
+        <div className={ styles.signup_container } style={{display: 'flex',justifyContent: 'flex-start',alignItems: 'center'}}>
+            <div className={ styles.row1 } style={{backgroundColor:"#1040c3",display: 'flex',justifyContent: 'center',alignItems: 'center',color:"floralwhite",fontStyle:"italic",
+        marginBottom:"25px"}}>
+                <h1 style={{marginTop:"0px"}}>
+                    <p style={{fontSize:"40px",textAlign:"center"}}>Welcome!</p>
+                    <p style={{fontSize:"18px",textAlign:"center"}}>Please sign up with your personal information to connect.</p>
                 </h1>
             </div>
             <div className={ styles.row2 } style={{backgroundColor:"#fff", display: 'flex',justifyContent: 'center'}}>
                 <div className={styles.loginCard}>
-                    <div className={styles.loginText}>Login</div>
+                    <div className={styles.loginText}>Signup</div>
                     <div>
                         <form onSubmit={handleSubmit(onSubmit)} autoComplete="on">
                             <label className={styles.label}>Username</label>
                             <input {...register("firstName")} className={styles.inp}
-                            defaultValue={defaultValues.firstName}
                             placeholder="bill"
                             />
                             <p>{errors.firstName && errors.firstName.message ?
@@ -77,20 +80,24 @@ export default function Login({changeLoginStatus}){
                                 
                             <label className={styles.label}>Email</label>
                             <input {...register("email")} className={styles.inp}
-                            // defaultValue={defaultValues.firstName}
                             placeholder="bill"
                             />
                             <p>{errors.email ?<>*{errors.email?.message}</>:null}</p>
                             <label className={styles.label}>Password</label>
                             <div style={{display: 'flex'}}>
                                 <input type ={show ? "text":"password"} {...register("password")} className={styles.inp}
-                                // defaultValue={defaultValues.firstName}
                                 />
                                 {show ? <VisibilityIcon sx={{m:2,cursor:"pointer"}} onClick = {handleClick}/>:<VisibilityOffIcon sx={{m:2,cursor:"pointer"}} onClick = {handleClick}></VisibilityOffIcon>}
                             </div>
                             <p>{errors.password ?<>*{errors.password?.message}</>:null}</p>
+                            <label className={styles.label}>Address</label>
+                            <input {...register("address")} className={styles.inp}
+                            />
+                            <p>{errors.address ?<>*{errors.address?.message}</>:null}</p>
                             <input type="submit"/>
-                            <Link href="/Signup"><span style={{color: "rgb(14, 104, 182)",fontWeight:"bold",cursor: "pointer"}}>Don't have an account? Signup here</span></Link>
+                            <Link href="/Login">
+                                <span style={{color: "rgb(14, 104, 182)",fontWeight:"bold",cursor: "pointer"}}>Already have an account? Login here</span>
+                            </Link>
                         </form>
                     </div>
                 </div>

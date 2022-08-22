@@ -1,15 +1,15 @@
-.container{
-    height:100vh;
+.signup_container{
+    height:120vh;
     width:100%;
     flex-direction:row;
     @media(max-width:850px){
-        height:110vh;
+        height:120vh;
         width: 100%;
         flex-direction:column;
     }
     .row1{
         width:45%;
-        height:100%;
+        height:125vh;
         @media(max-width:850px){
             width:100%;
         }
@@ -21,7 +21,7 @@
         padding-top:2em;
         @media(max-width:850px){
             width:100%;
-            height:140vh;
+            height:180vh;
             padding-top:5px;
         }
     }
@@ -162,3 +162,29 @@
         // outline:2px solid rgb(190, 27, 27);
     }
 }
+/* do not group these rules */
+// .inp::-webkit-input-placeholder {
+//     color: red;
+// }
+// .inp:-moz-placeholder {
+//     /* FF 4-18 */
+//     color: red;
+//     opacity: 1;
+// }
+// .inp::-moz-placeholder {
+//     /* FF 19+ */
+//     color: red;
+//     opacity: 1;
+// }
+// .inp:-ms-input-placeholder {
+//     /* IE 10+ */
+//     color: red;
+// }
+// .inp::-ms-input-placeholder {
+//     /* Microsoft Edge */
+//     color: red;
+// }
+// .inp::placeholder {
+//     /* modern browser */
+//     color: red;
+// }

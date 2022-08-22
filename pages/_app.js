@@ -1,14 +1,16 @@
 import { useState,useEffect } from 'react';
 import Layout from '../components/Layout';
-import Login from '../components/LoginPage.jsx';
+import Login from './Login/index.js';
+import Signup from './Signup/index.js';
 import '../styles/globals.css'
 import {useRouter} from 'next/router';
 
 function MyApp({ Component, pageProps }) {
   const router = useRouter();
+  const [isSignedIn,setIsSignedIn] = useState(false);
   const [isLoggedIn,setIsLoggedIn] = useState(false);
   const noLayout = ['/Menu', '/about']
-  // console.log(router,noLayout.indexOf(router.asPath))
+  console.log(router,noLayout.indexOf(router.asPath))
   console.log(isLoggedIn)
   useEffect(() => {
     // Perform localStorage action
@@ -18,7 +20,12 @@ function MyApp({ Component, pageProps }) {
   }, [isLoggedIn])
   const changeLoginStatus = ()=>{
     if(localStorage.getItem("loginStatus")){
-      setIsLoggedIn(localStorage.getItem("loginStatus"));
+      setIsSignedIn(localStorage.getItem("loginStatus"));
+    }
+  }
+  const  changeSigupStatus= ()=>{
+    if(localStorage.getItem("signupStatus")){
+      setIsSignedIn(localStorage.getItem("signupStatus"));
     }
   }
   const logout = ()=>{
@@ -28,7 +35,10 @@ function MyApp({ Component, pageProps }) {
       setIsLoggedIn(false);
     }
   }
-  if(isLoggedIn === false){
+  if(router.route === '/Signup' || router.route === '/'){
+    return <Signup changeLoginStatus={changeSigupStatus}/>
+  }
+  if(router.route === '/Login'){
     return <Login changeLoginStatus={changeLoginStatus}/>
   }
   if(router.route === "/404") {
