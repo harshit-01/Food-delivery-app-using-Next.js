@@ -1,6 +1,6 @@
 import LoginPage from '../../components/LoginPage.jsx';
-export default function Login(){
+export default function Login({changeLoginStatus}){
     return(
-        <LoginPage></LoginPage>
+        <LoginPage changeLoginStatus={changeLoginStatus}></LoginPage>
     )
 }

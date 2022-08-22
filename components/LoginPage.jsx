@@ -19,7 +19,7 @@ const schema = yup.object({
                 .matches(/^([a-zA-Z0-9@*#]{6,15})$/, 'Password can only contain alphanumeric and special characters.')
 }).required();
 
-export default function Login({changeLoginStatus}){
+export default function LoginPage({changeLoginStatus}){
     const router = useRouter();
     const [show,setShow] = useState(false);
     // const handleClick = (e) => {

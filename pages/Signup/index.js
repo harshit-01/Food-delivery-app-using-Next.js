@@ -1,6 +1,6 @@
 import SignupPage from '../../components/SignupPage';
-export default function Signup(){
+export default function Signup({changeSignupStatus}){
     return(
-        <SignupPage></SignupPage>
+        <SignupPage changeSignupStatus={changeSignupStatus}></SignupPage>
     )
 }

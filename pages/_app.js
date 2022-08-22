@@ -14,31 +14,42 @@ function MyApp({ Component, pageProps }) {
   console.log(isLoggedIn)
   useEffect(() => {
     // Perform localStorage action
-    if(localStorage.getItem("loginStatus")){
+    if (typeof window !== "undefined") {
+      if(localStorage.getItem("loginStatus")){
         setIsLoggedIn(localStorage.getItem("loginStatus"));
+      }
     }
-  }, [isLoggedIn])
-  const changeLoginStatus = ()=>{
-    if(localStorage.getItem("loginStatus")){
-      setIsSignedIn(localStorage.getItem("loginStatus"));
+    if (typeof window !== "undefined") {
+      if(localStorage.getItem("signupStatus")){
+        setIsSignedIn(localStorage.getItem("signupStatus"));
+      }
     }
+  }, [isLoggedIn,isSignedIn])
+  const changeLoginStatus = async()=>{
+    if (typeof window !== "undefined") {
+      if(localStorage.getItem("loginStatus")){
+        setIsLoggedIn(localStorage.getItem("loginStatus"));
+      }
+    }
+    router.push('/');
   }
-  const  changeSigupStatus= ()=>{
+  const changeSignupStatus= ()=>{
     if(localStorage.getItem("signupStatus")){
       setIsSignedIn(localStorage.getItem("signupStatus"));
     }
+    router.push('/Login');
   }
   const logout = ()=>{
-    // debugger;
     if(localStorage.getItem("loginStatus")){
       localStorage.removeItem("loginStatus");
       setIsLoggedIn(false);
     }
+    router.push('/Login');
   }
-  if(router.route === '/Signup' || router.route === '/'){
-    return <Signup changeLoginStatus={changeSigupStatus}/>
+  if(router.route === '/Signup' || (router.route === '/' && isSignedIn === false)){
+    return <Signup changeSignupStatus={changeSignupStatus}/>
   }
-  if(router.route === '/Login'){
+  if(router.route === '/Login' && isLoggedIn === false){
     return <Login changeLoginStatus={changeLoginStatus}/>
   }
   if(router.route === "/404") {

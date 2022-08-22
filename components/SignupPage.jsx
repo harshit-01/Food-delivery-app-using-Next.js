@@ -21,7 +21,7 @@ const schema = yup.object({
     // This regex accepts minimum three character and there is no limit on max characters. Characters may include a-z, A-Z alphabets, whitespace, comma(,), dot(.), apostrophe ('), and dash(-) symbols.
 }).required();
 
-export default function Signup({changeLoginStatus}){
+export default function SignupPage({changeSignupStatus}){
     const router = useRouter();
     const [show,setShow] = useState(false);
     // const handleClick = (e) => {
@@ -48,7 +48,7 @@ export default function Signup({changeLoginStatus}){
         if (typeof window !== "undefined" && data.email.length > 0 ) {
             localStorage.setItem("signupStatus", true)  
         }
-        changeSigupStatus();
+        changeSignupStatus();
         console.log(data);
     };
     const handleClick = (e)=>{
