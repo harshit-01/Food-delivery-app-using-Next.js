@@ -25,13 +25,13 @@ function MyApp({ Component, pageProps }) {
       }
     }
   }, [isLoggedIn,isSignedIn])
-  const changeLoginStatus = async()=>{
+  const changeLoginStatus = ()=>{
     if (typeof window !== "undefined") {
       if(localStorage.getItem("loginStatus")){
         setIsLoggedIn(localStorage.getItem("loginStatus"));
       }
     }
-    router.push('/');
+    router.replace('/', null, { shallow: true });
   }
   const changeSignupStatus= ()=>{
     if(localStorage.getItem("signupStatus")){
@@ -49,18 +49,20 @@ function MyApp({ Component, pageProps }) {
   if(router.route === '/Signup' || (router.route === '/' && isSignedIn === false)){
     return <Signup changeSignupStatus={changeSignupStatus}/>
   }
-  if(router.route === '/Login' && isLoggedIn === false){
+  else if(router.route === '/Login' && (isLoggedIn === false)){
     return <Login changeLoginStatus={changeLoginStatus}/>
   }
-  if(router.route === "/404") {
-    return <Component {...pageProps} />
-  } 
-  else {
-    return (
-    <Layout logout={logout}>
-      <Component {...pageProps} />
-    </Layout>
-    )
+  else{
+    if(router.route === "/404") {
+      return <Component {...pageProps} />
+    } 
+    else {
+      return (
+      <Layout logout={logout}>
+        <Component {...pageProps} />
+      </Layout>
+      )
+    }
   }
 }
 
