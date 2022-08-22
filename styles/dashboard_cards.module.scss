@@ -208,14 +208,62 @@
 .box{
     background-image: linear-gradient(to right bottom, #19b9ea, #00caeb, #00d9d4, #00e4a8, #12eb6b);
     font-family: sans-serif; 
+    height:450px;
+    @media(max-width:1400px){
+        height:490px
+    }
+    @media(max-width:1000px){
+        height:540px;
+    }
+    @media(max-width:768px){
+        height:570px;
+    }
+    @media(max-width:600px){
+        height:450px;
+    }
+    @media(max-width:400px){
+        height:550px;
+    }
 }
 .box2{
     background-image: linear-gradient(to right bottom, #10f1a6, #00f18d, #0def70, #2eee4d, #47eb12);
     font-family: sans-serif; 
+    height:450px;
+    @media(max-width:1400px){
+        height:490px
+    }
+    @media(max-width:1000px){
+        height:540px;
+    }
+    @media(max-width:768px){
+        height:570px;
+    }
+    @media(max-width:600px){
+        height:450px;
+    }
+    @media(max-width:400px){
+        height:550px;
+    }
 }
 .box3{
     background-image: linear-gradient(to left top, #8ef103, #a0ee00, #afeb00, #bde806, #c9e512);
     font-family: sans-serif; 
+    height:450px;
+    @media(max-width:1400px){
+        height:490px
+    }
+    @media(max-width:1000px){
+        height:540px;
+    }
+    @media(max-width:768px){
+        height:570px;
+    }
+    @media(max-width:600px){
+        height:450px;
+    }
+    @media(max-width:400px){
+        height:550px;
+    }
 }
 .neonText {
     animation: flicker 1.5s infinite alternate;

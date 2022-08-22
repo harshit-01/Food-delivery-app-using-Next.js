@@ -1,9 +1,10 @@
 import Navbar from './Navbar.jsx'; 
 
-const Layout = ({children})=>{
+const Layout = ({children,logout})=>{
+    console.log(logout)
     return (
         <>
-            <Navbar></Navbar>
+            <Navbar logout={logout}></Navbar>
             {children}
         </>
     )

@@ -22,7 +22,7 @@ import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
 const pages = ['Home','Dashboard','Menu','Plans','Reviews'];
 const settings = ['Profile','Dashboard','Groceries','Logout'];
 
-const Navbar = () => {
+const Navbar = ({logout}) => {
   const [anchorElNav, setAnchorElNav] = React.useState(null);
   const [anchorElUser, setAnchorElUser] = React.useState(null);
 
@@ -172,13 +172,13 @@ const Navbar = () => {
             </ShoppingCartIcon>
             <div style={{
                 position:"absolute",
-                top:"-11px",
+                top:"-10px",
                 left:"17px",
                 width: "18px",
                 backgroundColor: "red",
                 borderRadius:"50%",
                 textAlign: "center",
-                fontSize:"12px",
+                fontSize:"10px",
                 padding:"2px"
                 }}>
                 2
@@ -209,9 +209,14 @@ const Navbar = () => {
               {settings.map((setting) => (
                 <MenuItem key={setting} onClick={handleCloseUserMenu}>
                   {/* <Typography textAlign="center">{setting}</Typography> */}
-                  <Link href= {setting !== 'Home'? `/${setting}` :'/'}>
+                  {setting === "Logout" ? 
+                  <Typography onClick={()=>{logout()}}>      
                     {setting}
-                  </Link>
+                  </Typography>:
+                    <Link href= {setting !== 'Home'? `/${setting}` :'/'}>
+                      {setting}
+                    </Link>
+                  }
                 </MenuItem>
               ))}
             </Menu>
