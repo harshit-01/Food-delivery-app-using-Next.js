@@ -73,6 +73,9 @@ export default function profile(){
                             <p>
                                 <strong style={{color:"rgb(14, 104, 182)"}}>Email</strong><br/>ABCDEFGHIJKL@gmail.com
                             </p>
+                            <p>
+                                <strong style={{color:"rgb(14, 104, 182)"}}>Password</strong><br/>ABCDEFGHIJKL@gmail.com
+                            </p>
                             <p><strong style={{color:"rgb(14, 104, 182)"}}>Subscription Type</strong>
                                 <br/><br/>
                                 {/* <span className={styles.subscriptionTypeGreen}>Free</span> */}
@@ -80,6 +83,7 @@ export default function profile(){
                                 {/* <span className={styles.subscriptionTypeBlue}>Family</span> */}
                                 <span className={styles.subscriptionTypePurple}>Individual</span>
                             </p>
+                            
                         </div>
                         <Button variant="outlined" color="primary" startIcon={<UpdateIcon />}
                             sx = {{mt:2,ml:{xs:1,lg:2},minWidth:{xs:"25%",md:"90%"},color:"black",fontWeight:"bold"}} className={styles.updateDetails}>

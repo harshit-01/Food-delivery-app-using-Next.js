@@ -167,7 +167,7 @@ const Navbar = ({logout}) => {
               </Button>
             ))}
           </Box>
-          <div style={{position:"relative",display:"flex",justifyContent:"center",alignItems:"center"}}>
+          <div style={{position:"relative",display:"flex",justifyContent:"center",alignItems:"center",cursor:"pointer"}}>
             <ShoppingCartIcon sx={{ mr:2}}>
             </ShoppingCartIcon>
             <div style={{
@@ -179,7 +179,7 @@ const Navbar = ({logout}) => {
                 borderRadius:"50%",
                 textAlign: "center",
                 fontSize:"10px",
-                padding:"2px"
+                padding:"2px",
                 }}>
                 2
             </div>

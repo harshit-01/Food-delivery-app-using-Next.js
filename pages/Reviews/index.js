@@ -9,6 +9,7 @@ import ListItemAvatar from '@mui/material/ListItemAvatar';
 import Avatar from '@mui/material/Avatar';
 import Typography from '@mui/material/Typography';
 import { deepOrange, deepPurple } from '@mui/material/colors';
+import  Rating  from "../../components/Ratings.jsx"
 
 export default function Review(){
     const [formVal,setFormVal] = useState([
@@ -18,13 +19,14 @@ export default function Review(){
             rating:4.2
         }
     ]);
+    const [val, setVal] = useState(0);
     const handleClick = (e)=>{
         e.preventDefault();
         var formEl = document.forms.ReviewForm;
         var formData = new FormData(formEl);
         var appReview = formData.get('app_review');
         var restaurantReview = formData.get('restaurant_review');
-        var rating = formData.get('rating') ;
+        var rating = val;
         setFormVal([...formVal,{
             appReview:appReview,
             restaurantReview:restaurantReview,
@@ -43,7 +45,8 @@ export default function Review(){
                     <label htmlFor="restaurant_review" className={styles.label}>Any Restaurant Review</label><br />
                     <textarea className={styles.textarea} id="restaurant_review" name="restaurant_review" placeholder="Please mention the name of the restaturant followed by a give a review in then next line."></textarea><br/>
                     <label htmlFor="rating" className={styles.label}>Rating (between 1 and 5):</label><br/>
-                    <input type="number" id="rating" name="rating" min="1" max="5" step="0.01" className={styles.input}></input><br />
+                    {/* <input type="number" id="rating" name="rating" min="1" max="5" step="0.01" className={styles.input}></input><br /> */}
+                    <Rating val ={val} setVal={setVal}/>
                     <Button type="submit" variant="outlined" color="success" sx={{m:2}} onClick={(e)=>{
                         handleClick(e);
                     }}>Submit</Button>
@@ -95,6 +98,7 @@ export default function Review(){
                                         </>
                                         : "NA"}
                                     </>
+                                    
                                     <br />
                                     <em>Reviewed By : Jack</em> 
                                 </>

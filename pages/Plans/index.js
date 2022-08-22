@@ -8,6 +8,7 @@ import Divider from '@mui/material/Divider';
 import styles from '../../styles/dashboard_cards.module.scss';
 import Chip from '@mui/material/Chip';
 import Button from '@mui/material/Button';
+import Link from 'next/link'
 
 
 const Item = styled(Paper)(({ theme }) => ({
@@ -48,7 +49,10 @@ export default function Plans(){
                             <Typography mt={2} variant="h6" sx={{color:"floralwhite",fontStyle:"italic"}}> Upto 20 % off on dining out. </Typography>
                             {/* <Typography mt={4} variant="body2" sx={{color:"floralwhite",fontStyle:"italic"}}> Free delivery on first app order </Typography> */}
                             <Typography mt={5} mb={2} variant="h6" sx={{fontWeight:"bold",color:"floralwhite",fontStyle:"italic"}}> Rs 300 for 3 months <Chip label="Paid" color="success" sx={{mx:2}}/></Typography>
-                            <Button variant="outlined">Buy
+                            <Button variant="outlined">
+                                <Link href="/Payment/Individual">
+                                    Buy
+                                </Link>
                             </Button>
                         </Item> : <Item sx={{ width: "100%"}}  className={styles.box3}>
                             <Typography mt={2} variant="h4" sx={{fontWeight:"bold" ,fontStyle:"oblique"}} className={styles.blueText}> Family Subscription </Typography>
@@ -58,7 +62,11 @@ export default function Plans(){
                             <Typography mt={2} variant="h6" sx={{color:"floralwhite",fontStyle:"italic"}}> Upto <em>40 % off</em> on dining out. </Typography>
                             {/* <Typography mt={4} variant="body2" sx={{color:"floralwhite",fontStyle:"italic"}}> Delivery Free on first app order </Typography> */}
                             <Typography mt={5} mb={2} variant="h6" sx={{fontWeight:"bold",color:"floralwhite",fontStyle:"italic"}}> Rs 400 for 3 months <Chip label="Paid" color="success" sx={{mx:2}}/></Typography>
-                            <Button variant="outlined">Buy</Button>
+                            <Button variant="outlined">
+                                <Link href="/Payment/Family">
+                                    Buy
+                                </Link>
+                            </Button>
                         </Item>
                     }
                 </Grid>
