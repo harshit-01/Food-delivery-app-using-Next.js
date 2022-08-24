@@ -2,8 +2,8 @@ import { useRouter } from 'next/router'
 import { useState } from "react";
 import styles from '../../styles/payment.module.scss'
 import Image from 'next/image'
-import Payment from '../../asset/Payment.jpg'
-import Card from '../../asset/CreditCard.jpg'
+import Payment from '../../public/Payment.jpg'
+import Card from '../../public/CreditCard.jpg'
 import TextField from '@mui/material/TextField';
 import Button from '@mui/material/Button';
 

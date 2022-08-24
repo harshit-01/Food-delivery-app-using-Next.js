@@ -13,7 +13,7 @@ import Tooltip from '@mui/material/Tooltip';
 import MenuItem from '@mui/material/MenuItem';
 import AdbIcon from '@mui/icons-material/Adb';
 import Image from 'next/image'
-import app_icon from "../asset/delivery_icon.png";
+import app_icon from "../public/delivery_icon.png";
 import styles from '../styles/main.module.scss'
 import Stack from '@mui/material/Stack';
 import Link from 'next/link'

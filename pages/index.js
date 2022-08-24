@@ -1,7 +1,7 @@
 import Head from 'next/head'
 import styles from '../styles/main.module.scss'
 import Image from 'next/image'
-import mypic from '../asset/wave2.png'
+import mypic from '../public/wave2.png'
 import FoodCarousel from '../components/FoodCarousel'
 
 export default function Home() {

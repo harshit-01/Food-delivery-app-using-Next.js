@@ -1,4 +1,4 @@
-import error from "../asset/error404.png"
+import error from "../public/error404.png"
 import Image from 'next/image'
 import {useRouter} from 'next/router';
 import Link from 'next/link'
