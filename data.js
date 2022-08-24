@@ -1,3 +1,35 @@
+import Samosa from './asset/Samosa.jpg'
+import Dosa from './asset/Dosa1.jpg'
+import ChilliPotato from './asset/ChilliPotato.jpg'
+import Tikki from './asset/Tikki.jpg'
+import VegPizza from './asset/Pizza1.jpg'
+import Fries from './asset/Fries1.jpg'
+import Idli from './asset/Idli.jpg'
+import Wraps from './asset/Wraps.jpg'
+import RedSaucePasta from './asset/RedSaucePasta.jpg'
+import WhiteSaucePasta from './asset/WhiteSaucePasta.jpg'
+import NorthIndianThali from './asset/NorthIndianThali.jpg'
+import SouthIndianThali from './asset/SouthIndianThali.jpg'
+import VadaSambhar from './asset/VadaSambhar.jpg'
+import SpringRolls from './asset/SpringRolls.jpg'
+import DalMakhani from './asset/DalMakhani.jpg'
+import MasalaDosa from './asset/MasalaDosa.jpg'
+import ChilliPaneer from './asset/ChilliPaneer.jpg'
+import Macroni from './asset/Macroni.jpg'
+import PaneerButterMasala from './asset/PaneerButterMasala.jpg'
+import Uttapam from './asset/Uttapam.jpg'
+import Spaghetti from './asset/Spaghetti.jpg'
+import Momos from './asset/Momos.jpg'
+import RasamRice from './asset/RasamRice.jpg'
+import Naan from './asset/Naan.jpg'
+import GulabJamun from './asset/GulabJamun.jpg'
+import Chowmein from './asset/Chowmein.jpg'
+import PavBhaji from './asset/PavBhaji.jpg'
+import CholleBhature from './asset/CholleBhature.jpg'
+import NonVegPizza from './asset/NonVegPizza.png'
+
+import Laddu from './asset/Laddu.jpg'
+
 function getRandomInteger(min, max) {
   return Math.floor(Math.random() * (max - min + 1) ) + min;
 }
@@ -6,11 +38,12 @@ function getRandomFloat(min, max) {
 
   return parseFloat(str);
 }
+// 'ThisIsTheStringToSplit'.match(/[A-Z][a-z]+|[0-9]+/g).join(" ")
 export const foodItems = [
     {
       "id": 0,
       "name":"Samosa",
-      "img":"",
+      "img":{Samosa},
       "type":"North Indian",
       "restaurant":[
           {
@@ -34,7 +67,7 @@ export const foodItems = [
     {
       "id": 1,
       "name":"Dosa",
-      "img":"",
+      "img":{Dosa},
       "type":"South Indian",
       "restaurant":[
           {
@@ -57,8 +90,8 @@ export const foodItems = [
 
     {
       "id": 2,
-      "name":"Chilli Potatao",
-      "img":"",
+      "name":"ChilliPotato",
+      "img":{ChilliPotato},
       "type":"Chinese",
       "restaurant":[
           {
@@ -81,8 +114,8 @@ export const foodItems = [
 
     {
       "id": 3,
-      "name":"Aloo Tikki",
-      "img":"",
+      "name":"Tikki",
+      "img":{Tikki},
       "type":"North Indian",
       "restaurant":[
           {
@@ -105,8 +138,8 @@ export const foodItems = [
 
     {
       "id": 4,
-      "name":"Veg Pizza",
-      "img":"",
+      "name":"VegPizza",
+      "img":{VegPizza},
       "type":"Italian",
       "restaurant":[
           {
@@ -130,22 +163,22 @@ export const foodItems = [
     {
       "id": 5,
       "name":"Fries",
-      "img":"",
+      "img":{Fries},
       "type":"French",
       "restaurant":[
           {
             "name":"MCD",
-            "price":getRandomInteger(15,20),
+            "price":getRandomInteger(110,120),
             "rating":getRandomFloat(1,5)
           },
           {
             "name":"Burger King",
-            "price":getRandomInteger(15,20),
+            "price":getRandomInteger(115,140),
             "rating":getRandomFloat(1,5)
           },
           {
             "name":"Taco Bell",
-            "price":getRandomInteger(15,20),
+            "price":getRandomInteger(115,125),
             "rating":getRandomFloat(1,5)
           },
       ]
@@ -154,22 +187,22 @@ export const foodItems = [
     {
       "id": 6,
       "name":"Idli",
-      "img":"",
+      "img":{Idli},
       "type":"South Indian",
       "restaurant":[
           {
             "name":"Haldiram",
-            "price":getRandomInteger(15,20),
+            "price":getRandomInteger(85,100),
             "rating":getRandomFloat(1,5)
           },
           {
             "name":"Sagar Ratna",
-            "price":getRandomInteger(15,20),
+            "price":getRandomInteger(105,120),
             "rating":getRandomFloat(1,5)
           },
           {
             "name":"Vango",
-            "price":getRandomInteger(15,20),
+            "price":getRandomInteger(85,100),
             "rating":getRandomFloat(1,5)
           },
       ]
@@ -178,22 +211,22 @@ export const foodItems = [
     {
       "id": 7,
       "name":"Wraps",
-      "img":"",
+      "img":{Wraps},
       "type":"Mexican",
       "restaurant":[
           {
             "name":"Dazzles",
-            "price":getRandomInteger(15,20),
+            "price":getRandomInteger(105,120),
             "rating":getRandomFloat(1,5)
           },
           {
             "name":"Taco Bell",
-            "price":getRandomInteger(15,20),
+            "price":getRandomInteger(105,120),
             "rating":getRandomFloat(1,5)
           },
           {
             "name":"Gola",
-            "price":getRandomInteger(15,20),
+            "price":getRandomInteger(105,120),
             "rating":getRandomFloat(1,5)
           },
       ]
@@ -201,23 +234,23 @@ export const foodItems = [
 
     {
       "id": 8,
-      "name":"Pasta",
-      "img":"",
+      "name":"RedSaucePasta",
+      "img":{RedSaucePasta},
       "type":"Italian",
       "restaurant":[
           {
             "name":"Domino",
-            "price":getRandomInteger(15,20),
+            "price":getRandomInteger(150,220),
             "rating":getRandomFloat(1,5)
           },
           {
             "name":"Pizza Hut",
-            "price":getRandomInteger(15,20),
+            "price":getRandomInteger(150,220),
             "rating":getRandomFloat(1,5)
           },
           {
             "name":"Lapino",
-            "price":getRandomInteger(15,20),
+            "price":getRandomInteger(120,180),
             "rating":getRandomFloat(1,5)
           },
       ]
@@ -225,23 +258,23 @@ export const foodItems = [
 
     {
       "id": 9,
-      "name":"Thali",
-      "img":"",
+      "name":"NorthIndianThali",
+      "img":{NorthIndianThali},
       "type":"North Indian",
       "restaurant":[
           {
             "name":"Haldiram",
-            "price":getRandomInteger(15,20),
+            "price":getRandomInteger(315,360),
             "rating":getRandomFloat(1,5)
           },
           {
             "name":"Regency",
-            "price":getRandomInteger(15,20),
+            "price":getRandomInteger(315,340),
             "rating":getRandomFloat(1,5)
           },
           {
             "name":"Bikaner",
-            "price":getRandomInteger(15,20),
+            "price":getRandomInteger(315,320),
             "rating":getRandomFloat(1,5)
           },
       ]
@@ -249,23 +282,23 @@ export const foodItems = [
 
     {
       "id": 10,
-      "name":"Vada Sambhar",
-      "img":"",
+      "name":"VadaSambhar",
+      "img":{VadaSambhar},
       "type":"South Indian",
       "restaurant":[
           {
             "name":"Haldiram",
-            "price":getRandomInteger(15,20),
+            "price":getRandomInteger(105,120),
             "rating":getRandomFloat(1,5)
           },
           {
             "name":"Sagar Ratna",
-            "price":getRandomInteger(15,20),
+            "price":getRandomInteger(115,140),
             "rating":getRandomFloat(1,5)
           },
           {
             "name":"Vango",
-            "price":getRandomInteger(15,20),
+            "price":getRandomInteger(65,100),
             "rating":getRandomFloat(1,5)
           },
       ]
@@ -273,23 +306,23 @@ export const foodItems = [
 
     {
       "id":11,
-      "name":"Spring Rolls",
-      "img":"",
+      "name":"SpringRolls",
+      "img":{SpringRolls},
       "type":"Chinese",
       "restaurant":[
           {
             "name":"Dazzles",
-            "price":getRandomInteger(15,20),
+            "price":getRandomInteger(105,120),
             "rating":getRandomFloat(1,5)
           },
           {
             "name":"Nathu",
-            "price":getRandomInteger(15,20),
+            "price":getRandomInteger(105,120),
             "rating":getRandomFloat(1,5)
           },
           {
             "name":"Hotel Pahal",
-            "price":getRandomInteger(15,20),
+            "price":getRandomInteger(105,120),
             "rating":getRandomFloat(1,5)
           },
       ]
@@ -297,23 +330,23 @@ export const foodItems = [
 
     {
       "id": 12,
-      "name":"White Sauce Pasta",
-      "img":"",
+      "name":"WhiteSaucePasta",
+      "img":{WhiteSaucePasta},
       "type":"Italian",
       "restaurant":[
           {
             "name":"Domino",
-            "price":getRandomInteger(15,20),
+            "price":getRandomInteger(120,140),
             "rating":getRandomFloat(1,5)
           },
           {
             "name":"Pizza Hut",
-            "price":getRandomInteger(15,20),
+            "price":getRandomInteger(115,120),
             "rating":getRandomFloat(1,5)
           },
           {
             "name":"Lapino",
-            "price":getRandomInteger(15,20),
+            "price":getRandomInteger(105,120),
             "rating":getRandomFloat(1,5)
           },
       ]
@@ -321,23 +354,23 @@ export const foodItems = [
 
     {
       "id": 13,
-      "name":"Dal Makhani with Naan(2 pcs)",
-      "img":"",
+      "name":"DalMakhani",
+      "img":{DalMakhani},
       "type":"North Indian",
       "restaurant":[
           {
             "name":"Haldiram",
-            "price":getRandomInteger(15,20),
+            "price":getRandomInteger(325,340),
             "rating":getRandomFloat(1,5)
           },
           {
             "name":"Regency",
-            "price":getRandomInteger(15,20),
+            "price":getRandomInteger(325,340),
             "rating":getRandomFloat(1,5)
           },
           {
             "name":"Bikaner",
-            "price":getRandomInteger(15,20),
+            "price":getRandomInteger(315,320),
             "rating":getRandomFloat(1,5)
           },
       ]
@@ -345,23 +378,23 @@ export const foodItems = [
 
     {
       "id": 14,
-      "name":"Masala Dosa",
-      "img":"",
+      "name":"MasalaDosa",
+      "img":{MasalaDosa},
       "type":"South Indian",
       "restaurant":[
           {
             "name":"Haldiram",
-            "price":getRandomInteger(15,20),
+            "price":getRandomInteger(185,220),
             "rating":getRandomFloat(1,5)
           },
           {
             "name":"Sagar Ratna",
-            "price":getRandomInteger(15,20),
+            "price":getRandomInteger(185,220),
             "rating":getRandomFloat(1,5)
           },
           {
             "name":"Vango",
-            "price":getRandomInteger(15,20),
+            "price":getRandomInteger(185,220),
             "rating":getRandomFloat(1,5)
           },
       ]
@@ -369,23 +402,23 @@ export const foodItems = [
 
     {
       "id": 15,
-      "name":"Chilli Paneer",
-      "img":"",
+      "name":"ChilliPaneer",
+      "img":{ChilliPaneer},
       "type":"Chinese",
       "restaurant":[
           {
             "name":"Dazzles",
-            "price":getRandomInteger(15,20),
+            "price":getRandomInteger(315,320),
             "rating":getRandomFloat(1,5)
           },
           {
             "name":"Nathu",
-            "price":getRandomInteger(15,20),
+            "price":getRandomInteger(315,320),
             "rating":getRandomFloat(1,5)
           },
           {
             "name":"Hotel Pahal",
-            "price":getRandomInteger(15,20),
+            "price":getRandomInteger(315,320),
             "rating":getRandomFloat(1,5)
           },
       ]
@@ -394,22 +427,22 @@ export const foodItems = [
     {
       "id": 16,
       "name":"Macroni",
-      "img":"",
+      "img":{Macroni},
       "type":"Italian",
       "restaurant":[
           {
             "name":"Domino",
-            "price":getRandomInteger(15,20),
+            "price":getRandomInteger(115,120),
             "rating":getRandomFloat(1,5)
           },
           {
             "name":"Pizza Hut",
-            "price":getRandomInteger(15,20),
+            "price":getRandomInteger(115,120),
             "rating":getRandomFloat(1,5)
           },
           {
             "name":"Lapino",
-            "price":getRandomInteger(15,20),
+            "price":getRandomInteger(115,120),
             "rating":getRandomFloat(1,5)
           },
       ]
@@ -417,23 +450,23 @@ export const foodItems = [
 
     {
       "id": 17,
-      "name":"Panner Butter Masala",
-      "img":"",
+      "name":"PaneerButterMasala",
+      "img":{PaneerButterMasala},
       "type":"North Indian",
       "restaurant":[
           {
             "name":"Haldiram",
-            "price":getRandomInteger(15,20),
+            "price":getRandomInteger(315,320),
             "rating":getRandomFloat(1,5)
           },
           {
             "name":"BTW",
-            "price":getRandomInteger(15,20),
+            "price":getRandomInteger(315,320),
             "rating":getRandomFloat(1,5)
           },
           {
             "name":"Bikaner",
-            "price":getRandomInteger(15,20),
+            "price":getRandomInteger(315,320),
             "rating":getRandomFloat(1,5)
           },
       ]
@@ -442,22 +475,22 @@ export const foodItems = [
     {
       "id": 18,
       "name":"Uttapam",
-      "img":"",
+      "img":{Uttapam},
       "type":"South Indian",
       "restaurant":[
           {
             "name":"Haldiram",
-            "price":getRandomInteger(15,20),
+            "price":getRandomInteger(125,180),
             "rating":getRandomFloat(1,5)
           },
           {
             "name":"Sagar Ratna",
-            "price":getRandomInteger(15,20),
+            "price":getRandomInteger(125,180),
             "rating":getRandomFloat(1,5)
           },
           {
             "name":"Vango",
-            "price":getRandomInteger(15,20),
+            "price":getRandomInteger(125,180),
             "rating":getRandomFloat(1,5)
           },
       ]
@@ -466,22 +499,22 @@ export const foodItems = [
     {
       "id": 19,
       "name":"Momos",
-      "img":"",
+      "img":{Momos},
       "type":"Chinese",
       "restaurant":[
           {
             "name":"Dazzles",
-            "price":getRandomInteger(15,20),
+            "price":getRandomInteger(50,60),
             "rating":getRandomFloat(1,5)
           },
           {
             "name":"Nathu",
-            "price":getRandomInteger(15,20),
+            "price":getRandomInteger(50,60),
             "rating":getRandomFloat(1,5)
           },
           {
             "name":"Regency",
-            "price":getRandomInteger(15,20),
+            "price":getRandomInteger(50,60),
             "rating":getRandomFloat(1,5)
           },
       ]
@@ -490,7 +523,7 @@ export const foodItems = [
     {
       "id": 20,
       "name":"Spaghetti",
-      "img":"",
+      "img":{Spaghetti},
       "type":"Italian",
       "restaurant":[
           {
@@ -513,23 +546,23 @@ export const foodItems = [
 
     {
       "id": 21,
-      "name":"Yellow Dal",
-      "img":"",
+      "name":"Naan",
+      "img":{Naan},
       "type":"North Indian",
       "restaurant":[
           {
             "name":"Haldiram",
-            "price":getRandomInteger(15,20),
+            "price":getRandomInteger(45,60),
             "rating":getRandomFloat(1,5)
           },
           {
-            "name":"BTW",
-            "price":getRandomInteger(15,20),
+            "name":"Regency",
+            "price":getRandomInteger(45,60),
             "rating":getRandomFloat(1,5)
           },
           {
             "name":"Bikaner",
-            "price":getRandomInteger(15,20),
+            "price":getRandomInteger(35,50),
             "rating":getRandomFloat(1,5)
           },
       ]
@@ -537,23 +570,23 @@ export const foodItems = [
 
     {
       "id": 22,
-      "name":"Rasam Rice",
-      "img":"",
+      "name":"RasamRice",
+      "img":{RasamRice},
       "type":"South Indian",
       "restaurant":[
           {
             "name":"Dosa Wala",
-            "price":getRandomInteger(15,20),
+            "price":getRandomInteger(105,120),
             "rating":getRandomFloat(1,5)
           },
           {
             "name":"Sagar Ratna",
-            "price":getRandomInteger(15,20),
+            "price":getRandomInteger(105,120),
             "rating":getRandomFloat(1,5)
           },
           {
             "name":"Vango",
-            "price":getRandomInteger(15,20),
+            "price":getRandomInteger(105,120),
             "rating":getRandomFloat(1,5)
           },
       ]
@@ -562,22 +595,22 @@ export const foodItems = [
     {
       "id": 23,
       "name":"Chowmein",
-      "img":"",
+      "img":{Chowmein},
       "type":"Chinese",
       "restaurant":[
           {
             "name":"Dazzles",
-            "price":getRandomInteger(15,20),
+            "price":getRandomInteger(105,120),
             "rating":getRandomFloat(1,5)
           },
           {
             "name":"Nathu",
-            "price":getRandomInteger(15,20),
+            "price":getRandomInteger(105,120),
             "rating":getRandomFloat(1,5)
           },
           {
             "name":"Regency",
-            "price":getRandomInteger(15,20),
+            "price":getRandomInteger(105,120),
             "rating":getRandomFloat(1,5)
           },
       ]
@@ -585,8 +618,8 @@ export const foodItems = [
 
     {
       "id": 24,
-      "name":"Gulab Jamun",
-      "img":"",
+      "name":"GulabJamun",
+      "img":{GulabJamun},
       "type":"Dessert",
       "restaurant":[
           {
@@ -609,23 +642,23 @@ export const foodItems = [
 
     {
       "id": 25,
-      "name":"Cholle Bhatore",
-      "img":"",
+      "name":"CholleBhature",
+      "img":{CholleBhature},
       "type":"North Indian",
       "restaurant":[
           {
             "name":"Haldiram",
-            "price":getRandomInteger(15,20),
+            "price":getRandomInteger(105,120),
             "rating":getRandomFloat(1,5)
           },
           {
             "name":"BTW",
-            "price":getRandomInteger(15,20),
+            "price":getRandomInteger(105,120),
             "rating":getRandomFloat(1,5)
           },
           {
             "name":"Bikaner",
-            "price":getRandomInteger(15,20),
+            "price":getRandomInteger(105,120),
             "rating":getRandomFloat(1,5)
           },
       ]
@@ -633,23 +666,23 @@ export const foodItems = [
 
     {
       "id": 26,
-      "name":"South Indian Thali",
-      "img":"",
+      "name":"SouthIndianThali",
+      "img":{SouthIndianThali},
       "type":"South Indian",
       "restaurant":[
           {
             "name":"Haldiram",
-            "price":getRandomInteger(15,20),
+            "price":getRandomInteger(215,220),
             "rating":getRandomFloat(1,5)
           },
           {
             "name":"Sagar Ratna",
-            "price":getRandomInteger(15,20),
+            "price":getRandomInteger(215,220),
             "rating":getRandomFloat(1,5)
           },
           {
             "name":"Vango",
-            "price":getRandomInteger(15,20),
+            "price":getRandomInteger(215,220),
             "rating":getRandomFloat(1,5)
           },
       ]
@@ -657,23 +690,23 @@ export const foodItems = [
 
     {
       "id": 27,
-      "name":"Pav Bhaji",
-      "img":"",
+      "name":"PavBhaji",
+      "img":{PavBhaji},
       "type":"North Indian",
       "restaurant":[
           {
             "name":"Bikaner",
-            "price":getRandomInteger(15,20),
+            "price":getRandomInteger(105,120),
             "rating":getRandomFloat(1,5)
           },
           {
             "name":"Nathu",
-            "price":getRandomInteger(15,20),
+            "price":getRandomInteger(105,120),
             "rating":getRandomFloat(1,5)
           },
           {
             "name":"Haldiram",
-            "price":getRandomInteger(15,20),
+            "price":getRandomInteger(105,120),
             "rating":getRandomFloat(1,5)
           },
       ]
@@ -681,8 +714,8 @@ export const foodItems = [
 
     {
       "id": 28,
-      "name":"Ladoo",
-      "img":"",
+      "name":"Laddu",
+      "img":{Laddu},
       "type":"Sweets",
       "restaurant":[
           {
@@ -704,8 +737,8 @@ export const foodItems = [
     },
     {
       "id": 29,
-      "name":"Non-Veg Pizza",
-      "img":"",
+      "name":"NonVegPizza",
+      "img":{NonVegPizza},
       "type":"Italian",
       "restaurant":[
           {
@@ -715,12 +748,12 @@ export const foodItems = [
           },
           {
             "name":"Pizza Hut",
-            "price":getRandomInteger(15,20),
+            "price":getRandomInteger(315,420),
             "rating":getRandomFloat(1,5)
           },
           {
             "name":"Lapino",
-            "price":getRandomInteger(15,20),
+            "price":getRandomInteger(315,420),
             "rating":getRandomFloat(1,5)
           },
       ]
