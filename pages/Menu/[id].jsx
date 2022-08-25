@@ -136,7 +136,7 @@ export default function Item(){
                                     <IconButton sx={{border:"2px solid gray",borderRadius:"5px"}} variant = "outlined" value = {val} onClick={()=>handleClickRemove(val)}>
                                         <RemoveIcon />
                                     </IconButton>
-                                    <Snackbar  open={snackbar.open} anchorOrigin = {{vertical:'top',horizontal:"center"}}  autoHideDuration={5000} onClose={handleClose} >
+                                    <Snackbar  open={snackbar.open} anchorOrigin = {{vertical:'top',horizontal:"center"}}  autoHideDuration={2000} onClose={handleClose} >
                                         <Alert severity="success" sx={{ width: "100%"}}>
                                             {snackbar.message}
                                         </Alert>

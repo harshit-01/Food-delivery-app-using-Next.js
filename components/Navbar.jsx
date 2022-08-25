@@ -59,6 +59,13 @@ const Navbar = ({logout}) => {
   
     return color;
   }
+  const [cartItem,setCartItem] = React.useState(0);
+  React.useEffect(() => {
+    if(typeof window !== "undefined"){
+      setCartItem(parseInt(JSON.parse(localStorage.getItem("name")).length));
+      console.log(JSON.parse(localStorage.getItem("name")).length)
+    }
+  })
   
   function stringAvatar(name) {
     return {
@@ -181,7 +188,7 @@ const Navbar = ({logout}) => {
                 fontSize:"10px",
                 padding:"2px",
                 }}>
-                {typeof window !== "undefined" && localStorage.getItem("name") != undefined? JSON.parse(localStorage.getItem("name")).length:0}
+                {cartItem}
             </div>
           </div>
           <Box sx={{ flexGrow: 0 }}>
