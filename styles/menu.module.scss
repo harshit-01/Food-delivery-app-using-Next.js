@@ -1,3 +1,101 @@
-// .menu{
-    
-// }
+.container{
+    width:90%;
+    margin-top:40px;
+    .row{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: row;
+        width:100%;
+        margin:15px;
+        @media(max-width:768px){
+            flex-direction: column;
+        }
+        .col1{
+            width:50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: row;
+            @media(max-width:768px){
+                width:100%;
+            }
+            @media(max-width:768px){
+                flex-direction: column;
+            }
+            .img{
+                width:90%;
+                height:440px;
+                @media(max-width:768px){
+                    width:100%;
+                    height:220px;
+                }
+            }
+        }
+        .col2{
+            width:50%;
+            // height:420px;
+            margin-left: 20px;
+            @media(max-width:768px){
+                width:100%;
+            }
+            .text{
+                font-size:32px;
+                font-weight: bold;
+                color:rgb(27, 118, 160);
+                text-align: center;
+                font-style: italic;
+            }
+            .item{
+                display: flex;
+                justify-content: flex-start;
+                align-items: center;
+                flex-direction: column;
+                .itemContainer{
+                    margin:25px;
+                    width:100%;
+                    display: flex;
+                    justify-content: flex-start;
+                    align-items: center;
+                    flex-direction: row;
+                    border-bottom: 1px solid rgb(174, 171, 171);
+                    .text1{
+                        font-size:20px;
+                        font-weight: bold;
+                        text-align: left;
+                        font-style: italic;
+                        color:rgb(113, 36, 36);
+                        width:25%;
+                        border-bottom: 1px solid #eee;
+                        @media(max-width:500px){
+                            text-overflow: ellipsis;
+                            white-space: nowrap;
+                            overflow: hidden;
+                        }
+                    }
+                }
+                .itemContainer2{
+                    display: flex;
+                    justify-content: flex-start;
+                    align-items: center;
+                    flex-direction: row;
+                    margin:25px;
+                    width:100%;
+                    .text2{
+                        font-size:18px;
+                        font-weight: bold;
+                        text-align: left;
+                        font-style: italic;
+                        width:25%;
+                        @media(max-width:500px){
+                            text-overflow: ellipsis;
+                            white-space: nowrap;
+                            overflow: hidden;
+                        }
+
+                    }
+                }
+            }
+        }
+    }
+}

@@ -181,7 +181,7 @@ const Navbar = ({logout}) => {
                 fontSize:"10px",
                 padding:"2px",
                 }}>
-                2
+                {typeof window !== "undefined" && localStorage.getItem("name") != undefined? JSON.parse(localStorage.getItem("name")).length:0}
             </div>
           </div>
           <Box sx={{ flexGrow: 0 }}>

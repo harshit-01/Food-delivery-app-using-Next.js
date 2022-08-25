@@ -35,9 +35,9 @@ export default function Menu({foodItems}){
             handleLoad();
         }
     }, []);
-    const handleClick = (e)=>{
+    // const handleClick = (e)=>{
 
-    }
+    // }
     const openItem = (id)=>{
         router.push(`/Menu/${id}`);
     }
@@ -77,7 +77,7 @@ export default function Menu({foodItems}){
                             </Typography>
                         </CardContent>
                         <CardActions>
-                        <IconButton color="primary" aria-label="Add to cart" sx={{margin:"auto"}} onClick={handleClick}>
+                        <IconButton color="primary" aria-label="Add to cart" sx={{margin:"auto"}} onClick={(e)=>{openItem(val.id)}}>
                             <Tooltip title={`Add ${x} to Cart`} arrow placement="right">
                                 <AddCircleIcon />
                             </Tooltip>

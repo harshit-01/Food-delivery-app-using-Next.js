@@ -728,7 +728,7 @@ export const foodItems = [
     },
     {
       "id": 30,
-      "name":"Cold Drink",
+      "name":"ColdDrink",
       "img":"https://www.bigbasket.com/media/uploads/p/l/251014_12-thums-up-soft-drink.jpg",
       "type":"Beverages",
       "restaurant":[
@@ -751,7 +751,7 @@ export const foodItems = [
     },
     {
       "id": 31,
-      "name":"Cold Drink",
+      "name":"Mojito",
       "img":"https://st3.depositphotos.com/1001069/14144/i/450/depositphotos_141441742-stock-photo-mojito-cocktail-on-table.jpg",
       "type":"Beverages",
       "restaurant":[
