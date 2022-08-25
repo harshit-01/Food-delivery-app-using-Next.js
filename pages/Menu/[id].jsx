@@ -69,9 +69,18 @@ export default function Item({cartVal}){
         if (typeof window !== "undefined") {
             const item = JSON.parse(localStorage.getItem("name")) || [];
             console.log(item)
-            let a = item.includes(val.name);
-            if(a == true || item.length === 0){
-                item.unshift(val.name);
+            let a = 0;
+            for(let i=0;i<item?.length;i++){
+                if(item[i].name == val.name){
+                    a = 1;
+                }
+            }
+            if(a == 1 || item.length === 0){
+                const x = {
+                    name : val.name,
+                    dish : foodItem.name
+                }
+                item.unshift(x);
                 setCartItems(item);
                 localStorage.setItem("name",JSON.stringify(item));
                 setSnackbarState({...snackbar,open:true,message:`${val.name} ${foodItem.name} has been successfully added to the cart.`});
@@ -92,7 +101,12 @@ export default function Item({cartVal}){
             }
             else{
                 console.log(item)
-                let a = item.indexOf(val.name);
+                let a = -1;
+                for(let i=0;i<item?.length;i++){
+                    if(item[i].name == val.name){
+                        a = i;
+                    }
+                }
                 if(a !== -1){
                     item.splice(a,1);
                     console.log(item)
