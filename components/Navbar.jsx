@@ -22,7 +22,8 @@ import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
 const pages = ['Home','Dashboard','Menu','Plans','Reviews'];
 const settings = ['Profile','Dashboard','Groceries','Logout'];
 
-const Navbar = ({logout}) => {
+const Navbar = ({logout,cartItem,setCartItem}) => {
+  console.log(cartItem)
   const [anchorElNav, setAnchorElNav] = React.useState(null);
   const [anchorElUser, setAnchorElUser] = React.useState(null);
 
@@ -59,14 +60,6 @@ const Navbar = ({logout}) => {
   
     return color;
   }
-  const [cartItem,setCartItem] = React.useState(0);
-  React.useEffect(() => {
-    if(typeof window !== "undefined"){
-      setCartItem(parseInt(JSON.parse(localStorage.getItem("name")).length));
-      console.log(JSON.parse(localStorage.getItem("name")).length)
-    }
-  })
-  
   function stringAvatar(name) {
     return {
       sx: {
@@ -75,6 +68,12 @@ const Navbar = ({logout}) => {
       children: `${name.split(' ')[0][0]}${name.split(' ')[1][0]}`,
     };
   }
+  React.useEffect(() => {
+    if(typeof window !== "undefined"){
+      setCartItem(parseInt(JSON.parse(localStorage.getItem("name"))?.length));
+      // console.log(JSON.parse(localStorage.getItem("name"))?.length)
+    }
+  })
   return (
     <AppBar position="static" sx={{
         mb: 0,
@@ -188,7 +187,7 @@ const Navbar = ({logout}) => {
                 fontSize:"10px",
                 padding:"2px",
                 }}>
-                {cartItem}
+                {cartItem ? cartItem: 0}
             </div>
           </div>
           <Box sx={{ flexGrow: 0 }}>

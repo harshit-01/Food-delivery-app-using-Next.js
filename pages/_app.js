@@ -9,9 +9,11 @@ function MyApp({ Component, pageProps }) {
   const router = useRouter();
   const [isSignedIn,setIsSignedIn] = useState(false);
   const [isLoggedIn,setIsLoggedIn] = useState(false);
+  const [cartItem,setCartItem] = useState(0);
   const noLayout = ['/Menu', '/about']
   console.log(router,noLayout.indexOf(router.asPath))
   console.log(isLoggedIn)
+
   useEffect(() => {
     // Perform localStorage action
     if (typeof window !== "undefined") {
@@ -25,6 +27,14 @@ function MyApp({ Component, pageProps }) {
       }
     }
   }, [isLoggedIn,isSignedIn])
+
+  const cartVal = () => {
+    if(typeof window !== "undefined"){
+      setCartItem(parseInt(JSON.parse(localStorage.getItem("name"))?.length));
+      // console.log(JSON.parse(localStorage.getItem("name"))?.length)
+    }
+  }
+
   const changeLoginStatus = ()=>{
     if (typeof window !== "undefined") {
       if(localStorage.getItem("loginStatus")){
@@ -54,12 +64,12 @@ function MyApp({ Component, pageProps }) {
   }
   else{
     if(router.route === "/404") {
-      return <Component {...pageProps} />
+      return <Component {...pageProps}/>
     } 
     else {
       return (
-      <Layout logout={logout}>
-        <Component {...pageProps} />
+      <Layout logout={logout} cartItem={cartItem} setCartItem={setCartItem}>
+        <Component {...pageProps} cartVal={cartVal}/>
       </Layout>
       )
     }

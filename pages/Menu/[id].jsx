@@ -21,7 +21,8 @@ const Alert = React.forwardRef(function Alert(props, ref) {
 //     }
 // }
 
-export default function Item(){
+export default function Item({cartVal}){
+    console.log(cartVal);
     const router = useRouter();
     console.log(parseInt(router.query.id))
     const x = parseInt(router.query.id);
@@ -73,10 +74,11 @@ export default function Item(){
                 item.unshift(val.name);
                 setCartItems(item);
                 localStorage.setItem("name",JSON.stringify(item));
-                setSnackbarState({...snackbar,open:true,message:`${val.name} ${foodItem.name} has been successfully added to the cart`});
+                setSnackbarState({...snackbar,open:true,message:`${val.name} ${foodItem.name} has been successfully added to the cart.`});
+                cartVal();
             }
             else{
-                setSnackbarState({...snackbar,open:true,message:"You can only order from 1 restaurant at a time"});
+                setSnackbarState({...snackbar,open:true,message:"You can only order from 1 restaurant at a time."});
             }
         }
     }
@@ -86,7 +88,7 @@ export default function Item(){
         if (typeof window !== "undefined") {
             const item = JSON.parse(localStorage.getItem("name")) || [];
             if(item.length === 0){
-                setSnackbarState({...snackbar,open:true,message:"Cart is empty"});
+                setSnackbarState({...snackbar,open:true,message:"Cart is empty."});
             }
             else{
                 console.log(item)
@@ -96,7 +98,8 @@ export default function Item(){
                     console.log(item)
                     setCartItems(item);
                     localStorage.setItem("name",JSON.stringify(item));
-                    setSnackbarState({...snackbar,open:true,message:`${val.name} ${foodItem.name} has been successfully removed from the cart`});
+                    setSnackbarState({...snackbar,open:true,message:`${val.name} ${foodItem.name} has been successfully removed from the cart.`});
+                    cartVal();
                 }
                 else{
                     setSnackbarState({...snackbar,open:true,message:"The item selected to be removed is not present in the cart."});
@@ -136,8 +139,8 @@ export default function Item(){
                                     <IconButton sx={{border:"2px solid gray",borderRadius:"5px"}} variant = "outlined" value = {val} onClick={()=>handleClickRemove(val)}>
                                         <RemoveIcon />
                                     </IconButton>
-                                    <Snackbar  open={snackbar.open} anchorOrigin = {{vertical:'top',horizontal:"center"}}  autoHideDuration={2000} onClose={handleClose} >
-                                        <Alert severity="success" sx={{ width: "100%"}}>
+                                    <Snackbar  open={snackbar.open} anchorOrigin = {{vertical:'top',horizontal:"center"}}  autoHideDuration={3000} onClose={handleClose} >
+                                        <Alert severity="success" sx={{ width: "100%",fontSize:"16px"}}>
                                             {snackbar.message}
                                         </Alert>
                                     </Snackbar>
