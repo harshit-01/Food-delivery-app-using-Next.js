@@ -1,34 +1,3 @@
-import Samosa from './public/Samosa.jpg'
-import Dosa from './public/Dosa1.jpg'
-import ChilliPotato from './public/ChilliPotato.jpg'
-import Tikki from './public/Tikki.jpg'
-import VegPizza from './public/Pizza1.jpg'
-import Fries from './public/Fries1.jpg'
-import Idli from './public/Idli.jpg'
-import Wraps from './public/Wraps.jpg'
-import RedSaucePasta from './public/RedSaucePasta.jpg'
-import WhiteSaucePasta from './public/WhiteSaucePasta.jpg'
-import NorthIndianThali from './public/NorthIndianThali.jpg'
-import SouthIndianThali from './public/SouthIndianThali.jpg'
-import VadaSambhar from './public/VadaSambhar.jpg'
-import SpringRolls from './public/SpringRolls.jpg'
-import DalMakhani from './public/DalMakhani.jpg'
-import MasalaDosa from './public/MasalaDosa.jpg'
-import ChilliPaneer from './public/ChilliPaneer.jpg'
-import Macroni from './public/Macroni.jpg'
-import PaneerButterMasala from './public/PaneerButterMasala.jpg'
-import Uttapam from './public/Uttapam.jpg'
-import Spaghetti from './public/Spaghetti.jpg'
-import Momos from './public/Momos.jpg'
-import RasamRice from './public/RasamRice.jpg'
-import Naan from './public/Naan.jpg'
-import GulabJamun from './public/GulabJamun.jpg'
-import Chowmein from './public/Chowmein.jpg'
-import PavBhaji from './public/PavBhaji.jpg'
-import CholleBhature from './public/CholleBhature.jpg'
-import NonVegPizza from './public/NonVegPizza.png'
-import Laddu from './public/Laddu.jpg'
-
 function getRandomInteger(min, max) {
   return Math.floor(Math.random() * (max - min + 1) ) + min;
 }
@@ -42,7 +11,7 @@ export const foodItems = [
     {
       "id": 0,
       "name":"Samosa",
-      "img":{Samosa},
+      "img":"https://www.indianhealthyrecipes.com/wp-content/uploads/2019/11/samosa-recipe-500x500.jpg",
       "type":"North Indian",
       "restaurant":[
           {
@@ -66,7 +35,7 @@ export const foodItems = [
     {
       "id": 1,
       "name":"Dosa",
-      "img":{Dosa},
+      "img":"https://static.toiimg.com/thumb/63841432.cms?width=1200&height=900",
       "type":"South Indian",
       "restaurant":[
           {
@@ -90,7 +59,7 @@ export const foodItems = [
     {
       "id": 2,
       "name":"ChilliPotato",
-      "img":{ChilliPotato},
+      "img":"https://static.toiimg.com/photo/52532656.cms",
       "type":"Chinese",
       "restaurant":[
           {
@@ -114,7 +83,7 @@ export const foodItems = [
     {
       "id": 3,
       "name":"Tikki",
-      "img":{Tikki},
+      "img":"https://www.chefkunalkapur.com/wp-content/uploads/2022/04/aloo-tikki-chaat-2-1300x975.jpg?v=1648913714",
       "type":"North Indian",
       "restaurant":[
           {
@@ -138,7 +107,7 @@ export const foodItems = [
     {
       "id": 4,
       "name":"VegPizza",
-      "img":{VegPizza},
+      "img":"https://www.vegrecipesofindia.com/wp-content/uploads/2020/11/pizza-recipe-2-500x500.jpg",
       "type":"Italian",
       "restaurant":[
           {
@@ -162,7 +131,7 @@ export const foodItems = [
     {
       "id": 5,
       "name":"Fries",
-      "img":{Fries},
+      "img":"https://mcdonaldsblog.in/wp-content/uploads/2016/11/piri-piri.jpg",
       "type":"French",
       "restaurant":[
           {
@@ -186,7 +155,7 @@ export const foodItems = [
     {
       "id": 6,
       "name":"Idli",
-      "img":{Idli},
+      "img":"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQGGe0wTkPjv2qutNNgsoovXu0wwrbdPa7J2A&usqp=CAU",
       "type":"South Indian",
       "restaurant":[
           {
@@ -210,7 +179,7 @@ export const foodItems = [
     {
       "id": 7,
       "name":"Wraps",
-      "img":{Wraps},
+      "img":"https://imagesvc.meredithcorp.io/v3/jumpstartpure/image?url=https://static.onecms.io/wp-content/uploads/sites/44/2019/08/26232542/3749306.jpg&w=640&h=360&q=90&c=cc",
       "type":"Mexican",
       "restaurant":[
           {
@@ -234,7 +203,7 @@ export const foodItems = [
     {
       "id": 8,
       "name":"RedSaucePasta",
-      "img":{RedSaucePasta},
+      "img":"https://food.fnr.sndimg.com/content/dam/images/food/fullset/2014/4/8/2/FNM_050114-Classic-Red-Sauce-Recipe_s4x3.jpg.rend.hgtvcom.616.462.suffix/1397491331300.jpeg",
       "type":"Italian",
       "restaurant":[
           {
@@ -258,7 +227,7 @@ export const foodItems = [
     {
       "id": 9,
       "name":"NorthIndianThali",
-      "img":{NorthIndianThali},
+      "img":"https://b.zmtcdn.com/data/pictures/9/20829/ac33c7c32bbe46e25c1b15d8668726e1.jpg",
       "type":"North Indian",
       "restaurant":[
           {
@@ -282,7 +251,7 @@ export const foodItems = [
     {
       "id": 10,
       "name":"VadaSambhar",
-      "img":{VadaSambhar},
+      "img":"https://parulkirecipes.com/wp-content/uploads/2018/09/vada-sambhar.jpg",
       "type":"South Indian",
       "restaurant":[
           {
@@ -306,7 +275,7 @@ export const foodItems = [
     {
       "id":11,
       "name":"SpringRolls",
-      "img":{SpringRolls},
+      "img":"https://cdn.tarladalal.com/members/9306/big/big_spring_rolls,_chinese_veg_spring_roll_recipe-14334.jpg",
       "type":"Chinese",
       "restaurant":[
           {
@@ -330,7 +299,7 @@ export const foodItems = [
     {
       "id": 12,
       "name":"WhiteSaucePasta",
-      "img":{WhiteSaucePasta},
+      "img":"https://tastedrecipes.com/wp-content/uploads/2021/09/White-Sauce-Pasta-1.jpg",
       "type":"Italian",
       "restaurant":[
           {
@@ -354,7 +323,7 @@ export const foodItems = [
     {
       "id": 13,
       "name":"DalMakhani",
-      "img":{DalMakhani},
+      "img":"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRIFVCNFVjhaSVQu8z2Q3Ee-PXWm3d7ley9Rg&usqp=CAU",
       "type":"North Indian",
       "restaurant":[
           {
@@ -378,7 +347,7 @@ export const foodItems = [
     {
       "id": 14,
       "name":"MasalaDosa",
-      "img":{MasalaDosa},
+      "img":"https://www.mydelicious-recipes.com/home/images/120_1200_960/mydelicious-recipes-masala-dosa-with-batter",
       "type":"South Indian",
       "restaurant":[
           {
@@ -402,7 +371,7 @@ export const foodItems = [
     {
       "id": 15,
       "name":"ChilliPaneer",
-      "img":{ChilliPaneer},
+      "img":"https://www.yummytummyaarthi.com/wp-content/uploads/2014/09/1-27.jpg",
       "type":"Chinese",
       "restaurant":[
           {
@@ -426,7 +395,7 @@ export const foodItems = [
     {
       "id": 16,
       "name":"Macroni",
-      "img":{Macroni},
+      "img":"https://i1.wp.com/www.bharatzkitchen.com/wp-content/uploads/2019/09/10-min-macroni-3.jpg?fit=800%2C450&ssl=1",
       "type":"Italian",
       "restaurant":[
           {
@@ -450,7 +419,7 @@ export const foodItems = [
     {
       "id": 17,
       "name":"PaneerButterMasala",
-      "img":{PaneerButterMasala},
+      "img":"https://ministryofcurry.com/wp-content/uploads/2020/07/paneer-butter-masala_-2.jpg",
       "type":"North Indian",
       "restaurant":[
           {
@@ -474,7 +443,7 @@ export const foodItems = [
     {
       "id": 18,
       "name":"Uttapam",
-      "img":{Uttapam},
+      "img":"https://cdn2.foodviva.com/static-content/food-images/south-indian-recipes/uttapam/uttapam.jpg",
       "type":"South Indian",
       "restaurant":[
           {
@@ -498,7 +467,7 @@ export const foodItems = [
     {
       "id": 19,
       "name":"Momos",
-      "img":{Momos},
+      "img":"https://img-global.cpcdn.com/recipes/2da8cad7018f8486/1200x630cq70/photo.jpg",
       "type":"Chinese",
       "restaurant":[
           {
@@ -522,7 +491,7 @@ export const foodItems = [
     {
       "id": 20,
       "name":"Spaghetti",
-      "img":{Spaghetti},
+      "img":"https://veganwithgusto.com/wp-content/uploads/2021/05/speedy-spaghetti-arrabbiata-featured-e1649949762421.jpg",
       "type":"Italian",
       "restaurant":[
           {
@@ -546,7 +515,7 @@ export const foodItems = [
     {
       "id": 21,
       "name":"Naan",
-      "img":{Naan},
+      "img":"https://static.toiimg.com/photo/53338316.cms",
       "type":"North Indian",
       "restaurant":[
           {
@@ -570,7 +539,7 @@ export const foodItems = [
     {
       "id": 22,
       "name":"RasamRice",
-      "img":{RasamRice},
+      "img":"https://static.toiimg.com/photo/90636144/90636144.jpg?v=3",
       "type":"South Indian",
       "restaurant":[
           {
@@ -594,7 +563,7 @@ export const foodItems = [
     {
       "id": 23,
       "name":"Chowmein",
-      "img":{Chowmein},
+      "img":"https://uploads-ssl.webflow.com/5c481361c604e53624138c2f/60f2ea26313ff95e77db2713_Chowmein_1500%20x%201200.jpg",
       "type":"Chinese",
       "restaurant":[
           {
@@ -618,7 +587,7 @@ export const foodItems = [
     {
       "id": 24,
       "name":"GulabJamun",
-      "img":{GulabJamun},
+      "img":"https://static.toiimg.com/thumb/63799510.cms?imgsize=1091643&width=800&height=800",
       "type":"Dessert",
       "restaurant":[
           {
@@ -642,7 +611,7 @@ export const foodItems = [
     {
       "id": 25,
       "name":"CholleBhature",
-      "img":{CholleBhature},
+      "img":"https://static.toiimg.com/thumb/65699460.cms?width=573&height=430",
       "type":"North Indian",
       "restaurant":[
           {
@@ -666,7 +635,7 @@ export const foodItems = [
     {
       "id": 26,
       "name":"SouthIndianThali",
-      "img":{SouthIndianThali},
+      "img":"https://opt.toiimg.com/recuperator/img/toi/m-61275880/61275880.jpg&width=500&resizemode=4",
       "type":"South Indian",
       "restaurant":[
           {
@@ -690,7 +659,7 @@ export const foodItems = [
     {
       "id": 27,
       "name":"PavBhaji",
-      "img":{PavBhaji},
+      "img":"https://res.cloudinary.com/swiggy/image/upload/f_auto,q_auto,fl_lossy/cgf7qsoqsvfwletamxt4",
       "type":"North Indian",
       "restaurant":[
           {
@@ -714,7 +683,7 @@ export const foodItems = [
     {
       "id": 28,
       "name":"Laddu",
-      "img":{Laddu},
+      "img":"https://muthuhealthyrecipes.com/wp-content/uploads/2020/11/Sweet-Laddu-Recipe.jpg",
       "type":"Sweets",
       "restaurant":[
           {
@@ -737,7 +706,7 @@ export const foodItems = [
     {
       "id": 29,
       "name":"NonVegPizza",
-      "img":{NonVegPizza},
+      "img":"https://5.imimg.com/data5/MT/HW/MY-64895347/non-veg-pizza-500x500.png",
       "type":"Italian",
       "restaurant":[
           {
@@ -757,4 +726,51 @@ export const foodItems = [
           },
       ]
     },
+    {
+      "id": 30,
+      "name":"Cold Drink",
+      "img":"https://www.bigbasket.com/media/uploads/p/l/251014_12-thums-up-soft-drink.jpg",
+      "type":"Beverages",
+      "restaurant":[
+          {
+            "name":"Haldiram",
+            "price":getRandomInteger(35,40),
+            "rating":getRandomFloat(1,5)
+          },
+          {
+            "name":"Pizza Hut",
+            "price":getRandomInteger(35,40),
+            "rating":getRandomFloat(1,5)
+          },
+          {
+            "name":"Lapino",
+            "price":getRandomInteger(35,40),
+            "rating":getRandomFloat(1,5)
+          },
+      ]
+    },
+    {
+      "id": 31,
+      "name":"Cold Drink",
+      "img":"https://st3.depositphotos.com/1001069/14144/i/450/depositphotos_141441742-stock-photo-mojito-cocktail-on-table.jpg",
+      "type":"Beverages",
+      "restaurant":[
+          {
+            "name":"Haldiram",
+            "price":getRandomInteger(105,120),
+            "rating":getRandomFloat(1,5)
+          },
+          {
+            "name":"Dazzles",
+            "price":getRandomInteger(105,120),
+            "rating":getRandomFloat(1,5)
+          },
+          {
+            "name":"Lapino",
+            "price":getRandomInteger(105,120),
+            "rating":getRandomFloat(1,5)
+          },
+      ]
+    },
+    
 ]
