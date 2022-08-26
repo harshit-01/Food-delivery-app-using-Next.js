@@ -67,11 +67,13 @@ function MyApp({ Component, pageProps }) {
       return <Component {...pageProps}/>
     } 
     else {
-      return (
-      <Layout logout={logout} cartItem={cartItem} setCartItem={setCartItem}>
-        <Component {...pageProps} cartVal={cartVal}/>
-      </Layout>
-      )
+      if(isLoggedIn){
+        return (
+          <Layout logout={logout} cartItem={cartItem} setCartItem={setCartItem}>
+            <Component {...pageProps} cartVal={cartVal}/>
+          </Layout>
+        )
+      }
     }
   }
 }

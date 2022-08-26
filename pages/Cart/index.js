@@ -8,7 +8,7 @@ import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
 import Button from '@mui/material/Button';
 import Link from 'next/link'
-import { Router } from 'next/router';
+import { useRouter } from 'next/router';
 
 
 export default function Cart() {
@@ -27,8 +27,13 @@ export default function Cart() {
         return `${num.toFixed(2)}`;
     }
     function ccyFormatTotal(num) {
-        localStorage.setItem("TotalPayment",JSON.stringify(num.toFixed(2)- 50))
-        return `${num.toFixed(2)}`- 50;
+        let a = num.toFixed(2)- 50;
+        if(a<0){
+            a=0;
+        }
+        localStorage.setItem("TotalPayment",JSON.stringify(a))
+        
+        return a;
     }
 
     function priceRow(qty, unit) {

@@ -45,6 +45,7 @@ export default function PaymentType(){
                 cvv:cvv
             }]);
             alert("Payment Successful");
+            localStorage.removeItem('name');
             router.push('/')
         }
         // console.log(formVal,rating,restaurantReview,appReview);

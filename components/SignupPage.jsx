@@ -11,7 +11,7 @@ import VisibilityOffIcon from '@mui/icons-material/VisibilityOff';
 
 const schema = yup.object({
     firstName: yup.string().required('Firstname is required.'),
-    email: yup.string().email('Please provide a valid email.'),
+    email: yup.string().email('Please provide a valid email.').required('Email is required.'),
     password: yup.string()
                 .required('No password provided.') 
                 .min(6, 'Password is too short - should be 6 chars minimum.')
@@ -29,9 +29,9 @@ export default function SignupPage({changeSignupStatus}){
     //     router.push(href)
     // }
     const defaultValues = {
-        firstName: "bill",
-        lastName: "luo",
-        email: "a5@gmail.com",
+        firstName: "",
+        lastName: "",
+        email: "",
         address:""
     };
     const { register, handleSubmit, formState:{ errors } } = useForm({
@@ -71,7 +71,7 @@ export default function SignupPage({changeSignupStatus}){
                         <form onSubmit={handleSubmit(onSubmit)} autoComplete="on">
                             <label className={styles.label}>Username</label>
                             <input {...register("firstName")} className={styles.inp}
-                            placeholder="bill"
+                            placeholder="Harshit Kashyap"
                             />
                             <p>{errors.firstName && errors.firstName.message ?
                             <>*{errors.firstName?.message}</>
@@ -80,7 +80,7 @@ export default function SignupPage({changeSignupStatus}){
                                 
                             <label className={styles.label}>Email</label>
                             <input {...register("email")} className={styles.inp}
-                            placeholder="bill"
+                            placeholder="bill@gmail.com"
                             />
                             <p>{errors.email ?<>*{errors.email?.message}</>:null}</p>
                             <label className={styles.label}>Password</label>
