@@ -78,12 +78,12 @@ export default function LoginPage({changeLoginStatus}){
                             <label className={styles.label}>Email</label>
                             <input {...register("email")} className={styles.inp}
                             // defaultValue={defaultValues.firstName}
-                            placeholder="bill"
+                            placeholder="bill@gmail.com"
                             />
                             <p>{errors.email ?<>*{errors.email?.message}</>:null}</p>
                             <label className={styles.label}>Password</label>
                             <div style={{display: 'flex'}}>
-                                <input type ={show ? "text":"password"} {...register("password")} className={styles.inp}
+                                <input type ={show ? "text":"password"} {...register("password")} className={styles.inp} placeholder="ABCDEF12"
                                 // defaultValue={defaultValues.firstName}
                                 />
                                 {show ? <VisibilityIcon sx={{m:2,cursor:"pointer"}} onClick = {handleClick}/>:<VisibilityOffIcon sx={{m:2,cursor:"pointer"}} onClick = {handleClick}></VisibilityOffIcon>}

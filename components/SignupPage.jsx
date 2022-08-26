@@ -85,13 +85,13 @@ export default function SignupPage({changeSignupStatus}){
                             <p>{errors.email ?<>*{errors.email?.message}</>:null}</p>
                             <label className={styles.label}>Password</label>
                             <div style={{display: 'flex'}}>
-                                <input type ={show ? "text":"password"} {...register("password")} className={styles.inp}
+                                <input type ={show ? "text":"password"} {...register("password")} className={styles.inp} placeholder="ABCDEF12"
                                 />
                                 {show ? <VisibilityIcon sx={{m:2,cursor:"pointer"}} onClick = {handleClick}/>:<VisibilityOffIcon sx={{m:2,cursor:"pointer"}} onClick = {handleClick}></VisibilityOffIcon>}
                             </div>
                             <p>{errors.password ?<>*{errors.password?.message}</>:null}</p>
                             <label className={styles.label}>Address</label>
-                            <input {...register("address")} className={styles.inp}
+                            <input {...register("address")} className={styles.inp}  placeholder="111 Street A, Dwarka, Delhi"
                             />
                             <p>{errors.address ?<>*{errors.address?.message}</>:null}</p>
                             <input type="submit"/>

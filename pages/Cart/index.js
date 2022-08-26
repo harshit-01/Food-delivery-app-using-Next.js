@@ -129,6 +129,10 @@ export default function Cart() {
                 <TableCell colSpan={2} sx={{ fontWeight:"bold",fontSize:"16px"}}>Total</TableCell>
                 <TableCell align="right" sx={{ fontWeight:"bold",fontSize:"16px"}}>Rs {ccyFormatTotal(invoiceTotal)}</TableCell>
             </TableRow>
+            <TableRow>
+                <TableCell colSpan={2} sx={{ fontWeight:"bold",fontSize:"14px"}}>Deliver to Address</TableCell>
+                <TableCell>50</TableCell>
+            </TableRow>
             </TableBody>
         </Table>
         </TableContainer>

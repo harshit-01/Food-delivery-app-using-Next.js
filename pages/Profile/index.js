@@ -25,10 +25,14 @@ import PhotoCamera from '@mui/icons-material/PhotoCamera';
 import { style } from '@mui/system';
 import FileBase64 from 'react-file-base64';
 import defaultPic from "../../public/defaultPic.png"
+import UserDetailModel from '../../components/UserDetailModel.jsx'
 
 export default function profile(){
     const [pic,setPic] = useState("");
     const [image,setImage] = useState("");
+    const [open, setOpen] = useState(false);
+    const handleOpen = () => setOpen(true);
+    const handleClose = () => setOpen(false);
     // const uploadImage = (e)=>{
     //     debugger;
 
@@ -44,7 +48,7 @@ export default function profile(){
     //         document.getElementById("imagePreview").setAttribute("src", localStorage.getItem("image"))
     //     }
     // }
-    console.log(image.length)
+    console.log(image.length,open)
     return (
         <div className={styles.container}>
             <div className={styles.subcontainer}>
@@ -90,7 +94,7 @@ export default function profile(){
                             
                         </div>
                         <Button variant="outlined" color="primary" startIcon={<UpdateIcon />}
-                            sx = {{mt:2,ml:{xs:1,lg:2},minWidth:{xs:"25%",md:"90%"},color:"black",fontWeight:"bold"}} className={styles.updateDetails}>
+                            sx = {{mt:2,ml:{xs:1,lg:2},minWidth:{xs:"25%",md:"90%"},color:"black",fontWeight:"bold"}} className={styles.updateDetails} onClick={()=>handleOpen()}>
                                 Update Details
                         </Button>
                     </div>
@@ -262,6 +266,7 @@ export default function profile(){
                         </div>
                     </div>
                 </div>
+                {open ? <UserDetailModel open={open} handleOpen={handleOpen} handleClose={handleClose}></UserDetailModel> : null}
                 {/* <div className={styles.row3}></div> */}
             </div>
         </div>
