@@ -9,6 +9,8 @@ import Paper from '@mui/material/Paper';
 import Button from '@mui/material/Button';
 import Link from 'next/link'
 import { useRouter } from 'next/router';
+// import { ComponentToPrint } from './ComponentToPrint';
+// import dynamic from 'next/dynamic'
 
 
 export default function Cart() {
@@ -22,6 +24,7 @@ export default function Cart() {
           }
         }
     }, [])
+    const componentRef = React.useRef();
     const TAX_RATE = 0.10;
     function ccyFormat(num) {
         return `${num.toFixed(2)}`;
@@ -79,7 +82,7 @@ export default function Cart() {
     const invoiceTaxes = TAX_RATE * invoiceSubtotal;
     const invoiceTotal = invoiceTaxes + invoiceSubtotal;
     return (
-    <div style={{margin:"auto",marginTop:"30px",width:"80%",height:"105vh"}}>
+    <div style={{margin:"auto",marginTop:"30px",width:"80%",height:"105vh"}} ref={componentRef}>
         <p style={{textAlign:"center",fontSize:"24px",fontWeight:"bold",color:"rgb(27, 118, 160)"}}>Invoice</p>
         <TableContainer component={Paper}>
         <Table sx={{ minWidth: 700,border:"1px solid gray" }} aria-label="spanning table">
@@ -130,9 +133,15 @@ export default function Cart() {
         </Table>
         </TableContainer>
         <small>*Taxes include GST and delivery charges.</small><br/>
+        <small>*While printing invoice please select landscape mode.</small><br/>
         <div style={{width:"100%",textAlign: 'right'}}>
+            <Link href="javascript:window.print()">
+                <Button variant="outlined" color="warning" sx={{mt:2,mb:2,fontSize:"14px"}}>
+                    Download Invoice
+                </Button>
+            </Link>
             <Link href="/Payment/Order">
-                <Button variant="outlined" sx={{mt:2,mb:2,fontSize:"14px"}}>
+                <Button variant="outlined" sx={{mt:2,mb:2,ml:2,fontSize:"14px"}}>
                         Order
                 </Button>
             </Link>
