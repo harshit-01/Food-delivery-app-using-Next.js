@@ -25,7 +25,7 @@ export default function dashboard(){
                     </li>
                     <li onClick={()=>handleClick(1)}>
                         <Tooltip title="News" placement="right"arrow >
-                            <a className={isActive === 1 ? styles.active:""} href="#news"><NewspaperIcon sx={{mr:2}}></NewspaperIcon>
+                            <a className={isActive === 1 ? styles.active:""} href="/News"><NewspaperIcon sx={{mr:2}}></NewspaperIcon>
                             </a>
                         </Tooltip>
                         </li>

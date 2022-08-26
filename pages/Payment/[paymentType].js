@@ -14,9 +14,9 @@ export default function PaymentType(){
     console.log(router)
     const [formVal,setFormVal] = useState([
         {
-            appReview:"Great user interface, easy to access and order food",
-            restaurantReview:"Mcd - Great combo offers",
-            rating:4.2
+            expiryDate:0,
+            accountNumber:0,
+            cvv:null
         }
     ]);
     let amount = 0;
@@ -32,21 +32,22 @@ export default function PaymentType(){
         e.preventDefault();
         var formEl = document.forms.PaymentForm;
         var formData = new FormData(formEl);
-        var appReview = formData.get('expiryDate');
-        var restaurantReview = formData.get('restaurant_review');
-        var rating = formData.get('cvv');
-        if(!isNumber(rating) || appReview.length == 0 || restaurantReview.length == 0){
-            alert("Please fill all the fields");
+        var expiryDate = formData.get('expiryDate');
+        var accountNumber = formData.get('accountNumber');
+        var cvv = formData.get('cvv');
+        if(isNaN(cvv) || expiryDate.length == 0 || accountNumber.length == 0){
+            alert("Please fill all the card details");
         } 
         else{
             setFormVal([...formVal,{
-                appReview:appReview,
-                restaurantReview:restaurantReview,
-                rating:rating
+                expiryDate:expiryDate,
+                accountNumber:accountNumber,
+                cvv:cvv
             }]);
             alert("Payment Successful");
+            router.push('/')
         }
-        console.log(formVal,rating,restaurantReview,appReview);
+        // console.log(formVal,rating,restaurantReview,appReview);
     }
     
     return(

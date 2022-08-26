@@ -8,9 +8,11 @@ import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
 import Button from '@mui/material/Button';
 import Link from 'next/link'
+import { Router } from 'next/router';
 
 
 export default function Cart() {
+    const router = useRouter();
     const [billContent,setBillContent] = React.useState([]);
     React.useEffect(() => {
         // Perform localStorage action
