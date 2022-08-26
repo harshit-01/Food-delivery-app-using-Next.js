@@ -74,7 +74,11 @@ export default function profile(){
                                 <strong style={{color:"rgb(14, 104, 182)"}}>Email</strong><br/>ABCDEFGHIJKL@gmail.com
                             </p>
                             <p>
-                                <strong style={{color:"rgb(14, 104, 182)"}}>Password</strong><br/>ABCDEFGHIJKL@gmail.com
+                                <strong style={{color:"rgb(14, 104, 182)"}}>Password</strong><br/>
+                                ABSJNDSN
+                                {/* <Button sx={{pl:0,fontWeight:"bold"}} onClick={()=>{
+                                    alert(`SMS your old password`)
+                                }}>Change</Button> */}
                             </p>
                             <p><strong style={{color:"rgb(14, 104, 182)"}}>Subscription Type</strong>
                                 <br/><br/>

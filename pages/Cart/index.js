@@ -133,7 +133,7 @@ export default function Cart() {
         <div style={{width:"100%",textAlign: 'right'}}>
             <Link href="/Payment/Order">
                 <Button variant="outlined" sx={{mt:2,mb:2,fontSize:"14px"}}>
-                        Buy
+                        Order
                 </Button>
             </Link>
         </div>

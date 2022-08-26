@@ -154,7 +154,7 @@ export default function Item({cartVal}){
                                     <IconButton sx={{border:"2px solid gray",borderRadius:"5px"}} variant = "outlined" value = {val} onClick={()=>handleClickRemove(val)}>
                                         <RemoveIcon />
                                     </IconButton>
-                                    <Snackbar  open={snackbar.open} anchorOrigin = {{vertical:'top',horizontal:"center"}}  autoHideDuration={3000} onClose={handleClose} >
+                                    <Snackbar  open={snackbar.open} anchorOrigin = {{vertical:'top',horizontal:"center"}}  autoHideDuration={1200} onClose={handleClose} >
                                         <Alert severity="success" sx={{ width: "100%",fontSize:"16px"}}>
                                             {snackbar.message}
                                         </Alert>

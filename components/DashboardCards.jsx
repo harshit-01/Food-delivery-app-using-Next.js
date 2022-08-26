@@ -64,20 +64,21 @@ ChartJS.register(
   );
 
 const arr = {
-        "year": 2022,
+        // "year": 2022,
         "Jan": 2000, 
         "Feb": 2300, 
         "Mar" : 2000, 
-        "Apr" :2600, 
+        "Apr" :2500, 
         "May": 3000, 
-        "Jun" : 3200, 
+        "Jun" : 20000, 
         "Jul" : 4000, 
         "Aug" : 3400, 
-        "Sep" : 1000, 
+        "Sep" : 5000, 
         "Oct" : 2000, 
-        "Nov" : 3000, 
-        "Dec" : 32109
-    }
+        "Nov" : 24000, 
+        "Dec" : 26140
+}
+
 const style = {
         width: '100%',
         maxWidth: 360,
