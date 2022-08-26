@@ -78,6 +78,7 @@ export default function Item({cartVal}){
             if(a == 1 || item.length === 0){
                 const x = {
                     name : val.name,
+                    price : val.price,
                     dish : foodItem.name
                 }
                 item.unshift(x);
@@ -162,6 +163,11 @@ export default function Item({cartVal}){
                             )}) : null
                         }
                         </div>
+                </div>
+                <div style={{width: '100%',textAlign: 'center'}}>
+                    <Button variant="outlined" color="success" onClick={()=>{
+                        router.push('/Cart')
+                    }}>Show Cart</Button>
                 </div>
             </div>
         </div>

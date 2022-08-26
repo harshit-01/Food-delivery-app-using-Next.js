@@ -18,12 +18,14 @@ import styles from '../styles/main.module.scss'
 import Stack from '@mui/material/Stack';
 import Link from 'next/link'
 import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
+import {useRouter} from 'next/router';
 
 const pages = ['Home','Dashboard','Menu','Plans','Reviews'];
 const settings = ['Profile','Dashboard','Groceries','Logout'];
 
 const Navbar = ({logout,cartItem,setCartItem}) => {
   console.log(cartItem)
+  const router = useRouter();
   const [anchorElNav, setAnchorElNav] = React.useState(null);
   const [anchorElUser, setAnchorElUser] = React.useState(null);
 
@@ -133,7 +135,7 @@ const Navbar = ({logout,cartItem,setCartItem}) => {
             >
               {pages.map((page) => (
                 <MenuItem key={page} onClick={handleCloseNavMenu}>
-                    {console.log(page)}
+                    {/* {console.log(page)} */}
                   <Link href= {page !== 'Home'? `/${page}`:'/'}>
                     <Typography textAlign="center">{page}</Typography>
                   </Link>
@@ -173,7 +175,9 @@ const Navbar = ({logout,cartItem,setCartItem}) => {
               </Button>
             ))}
           </Box>
-          <div style={{position:"relative",display:"flex",justifyContent:"center",alignItems:"center",cursor:"pointer"}}>
+          <div style={{position:"relative",display:"flex",justifyContent:"center",alignItems:"center",cursor:"pointer"}} onClick={()=>{
+            router.push('/Cart')
+          }}>
             <ShoppingCartIcon sx={{ mr:2}}>
             </ShoppingCartIcon>
             <div style={{

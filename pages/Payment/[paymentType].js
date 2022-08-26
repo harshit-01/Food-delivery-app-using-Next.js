@@ -1,5 +1,5 @@
 import { useRouter } from 'next/router'
-import { useState } from "react";
+import { useState,useEffect } from "react";
 import styles from '../../styles/payment.module.scss'
 import Image from 'next/image'
 import Payment from '../../public/Payment.jpg'
@@ -19,24 +19,39 @@ export default function PaymentType(){
             rating:4.2
         }
     ]);
+    let amount = 0;
+    if (typeof window !== "undefined") {
+        // debugger;
+        // console.log(typeof(JSON.parse(localStorage.getItem("TotalPayment"))))
+        if(JSON.parse(localStorage.getItem("TotalPayment")) != null){
+          amount = JSON.parse(localStorage.getItem("TotalPayment"));
+        }
+    }
+    console.log(amount)
     const handleClick = (e)=>{
         e.preventDefault();
         var formEl = document.forms.PaymentForm;
         var formData = new FormData(formEl);
         var appReview = formData.get('expiryDate');
         var restaurantReview = formData.get('restaurant_review');
-        var rating = formData.get('cvv');;
-        setFormVal([...formVal,{
-            appReview:appReview,
-            restaurantReview:restaurantReview,
-            rating:rating
-        }]);
-
+        var rating = formData.get('cvv');
+        if(!isNumber(rating) || appReview.length == 0 || restaurantReview.length == 0){
+            alert("Please fill all the fields");
+        } 
+        else{
+            setFormVal([...formVal,{
+                appReview:appReview,
+                restaurantReview:restaurantReview,
+                rating:rating
+            }]);
+            alert("Payment Successful");
+        }
         console.log(formVal,rating,restaurantReview,appReview);
     }
+    
     return(
         <div className={styles.paymentContainer}>
-            <p>{plan} Paid Plan</p>
+            <p>{plan}{" "}{plan === "Family" || plan === "Individual"?"Paid Plan":"Payment"}</p>
             <div className={styles.paymentSubContainer}>
                 <div className={styles.col1}>
                     <p>Payment through UPI/wallet</p>
@@ -57,7 +72,7 @@ export default function PaymentType(){
                             <label for="cvv">CVV</label>
                             <input type="number" max ="3" name="cvv" placeholder="123" required></input>
                             <label for="Amount">Amount to Pay</label>
-                            <input type="text"  name="amount" placeholder="Rs 5000" value ={plan === "Family" ? "Rs 400" : "Rs 300"}required></input>
+                            <input type="text"  name="amount" placeholder="Rs 5000" value ={plan === "Family" ? "Rs 400" : plan === "Individual" ? "Rs 300":amount}required></input>
                             {/* <input type="submit" onClick={handleClick}></input> */}
                             <Button  variant="outlined" color="success" sx ={{width:"40%",marginTop: "20px"}} onClick={handleClick}>Pay</Button>
                         </form>
