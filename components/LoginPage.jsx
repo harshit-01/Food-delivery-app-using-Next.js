@@ -8,6 +8,8 @@ import { yupResolver } from '@hookform/resolvers/yup';
 import * as yup from "yup";
 import VisibilityIcon from '@mui/icons-material/Visibility';
 import VisibilityOffIcon from '@mui/icons-material/VisibilityOff';
+import axios from 'axios'
+
 
 const schema = yup.object({
     firstName: yup.string().required('Firstname is required.'),
@@ -41,12 +43,28 @@ export default function LoginPage({changeLoginStatus}){
     //         setIsLoggedIn(localStorage.getItem("loginStatus"));
     //     }
     // }, [isLoggedIn])
-    const onSubmit = (data) => {
-        if (typeof window !== "undefined" && data.email.length > 0 ) {
-            localStorage.setItem("loginStatus", true)  
-        }
-        changeLoginStatus();
+    const onSubmit = async(data) => {
         console.log(data);
+        let id = localStorage.getItem("id")
+        try {
+            await axios.post('/api/Login', {
+                username: data.firstName,
+                email: data?.email,
+                password:data.password,
+                id:id
+            }).then((response) => {
+                if (typeof window !== "undefined" && data.firstName.length > 0 ) {
+                    localStorage.setItem("loginStatus", true)  
+                }
+                changeLoginStatus();
+                console.log(response);
+            }).catch((err) => {
+                console.log("Incorrect credentials provided")
+            })
+        } 
+        catch (error) {
+            console.error("error",error);
+        }
     };
     const handleClick = (e)=>{
         setShow(!show);
@@ -64,7 +82,7 @@ export default function LoginPage({changeLoginStatus}){
                 <div className={styles.loginCard}>
                     <div className={styles.loginText}>Login</div>
                     <div>
-                        <form onSubmit={handleSubmit(onSubmit)} autoComplete="on">
+                        <form style={{marginBotton:"16px"}} onSubmit={handleSubmit(onSubmit)} autoComplete="on">
                             <label className={styles.label}>Username</label>
                             <input {...register("firstName")} className={styles.inp}
                             defaultValue={defaultValues.firstName}

@@ -80,7 +80,7 @@ export default function UserDetailModel({open,handleOpen,handleClose}) {
       >
         <Box sx={style}>
             <div style={{display: 'flex',width:"100%"}}>
-                <p className={styles.modalTitle}>User Details</p>
+                <p className={styles.modalTitle}>Update User Details</p>
                 <CloseIcon sx={{marginLeft:"auto"}} onClick={handleClose}/>
             </div>
             <div className={styles.modal}>

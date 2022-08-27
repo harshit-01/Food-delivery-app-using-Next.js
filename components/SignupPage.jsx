@@ -8,6 +8,7 @@ import { yupResolver } from '@hookform/resolvers/yup';
 import * as yup from "yup";
 import VisibilityIcon from '@mui/icons-material/Visibility';
 import VisibilityOffIcon from '@mui/icons-material/VisibilityOff';
+import axios from 'axios'
 
 const schema = yup.object({
     firstName: yup.string().required('Firstname is required.'),
@@ -44,12 +45,26 @@ export default function SignupPage({changeSignupStatus}){
     //         setIsLoggedIn(localStorage.getItem("loginStatus"));
     //     }
     // }, [isLoggedIn])
-    const onSubmit = (data) => {
-        if (typeof window !== "undefined" && data.email.length > 0 ) {
-            localStorage.setItem("signupStatus", true)  
-        }
-        changeSignupStatus();
+    const onSubmit = async(data) => {
         console.log(data);
+        try {
+            await axios.post('/api/Signup', {
+                username: data.firstName,
+                email: data.email,
+                password:data.password,
+                address:data.address
+            }).then((response) => {
+                if (typeof window !== "undefined" && data.email.length > 0 ) {
+                    localStorage.setItem("signupStatus", true) 
+                    localStorage.setItem("id", response.data.user._id)   
+                }
+                changeSignupStatus();
+                console.log(response);
+            })
+        } 
+        catch (error) {
+            console.error("error",error);
+        }
     };
     const handleClick = (e)=>{
         setShow(!show);
@@ -68,7 +83,7 @@ export default function SignupPage({changeSignupStatus}){
                 <div className={styles.loginCard}>
                     <div className={styles.loginText}>Signup</div>
                     <div>
-                        <form onSubmit={handleSubmit(onSubmit)} autoComplete="on">
+                        <form  style={{marginBotton:"8px"}}onSubmit={handleSubmit(onSubmit)} autoComplete="on">
                             <label className={styles.label}>Username</label>
                             <input {...register("firstName")} className={styles.inp}
                             placeholder="Harshit Kashyap"

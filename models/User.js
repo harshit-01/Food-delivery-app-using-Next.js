@@ -1,15 +1,15 @@
 import mongoose from "mongoose";
 
 const UserSchema = new mongoose.Schema({
-    id:Number,
-    name:{
+    // id:String,
+    username:{
         type:String,
         maxLength:50,
         required:true
     },
     password:{
         type:String,
-        maxLength:50,
+        // maxLength:50,
         required:true
     },
     email:{
