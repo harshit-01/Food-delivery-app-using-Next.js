@@ -3,8 +3,12 @@ import styles from '../styles/main.module.scss'
 import Image from 'next/image'
 import mypic from '../public/wave2.png'
 import FoodCarousel from '../components/FoodCarousel'
+import { setCookie,getCookie,hasCookie,deleteCookie  } from 'cookies-next';
 
 export default function Home() {
+  if(hasCookie){
+    console.log(getCookie('token'))
+  }
   return (
     <div>
       <Head>

@@ -9,6 +9,7 @@ import * as yup from "yup";
 import VisibilityIcon from '@mui/icons-material/Visibility';
 import VisibilityOffIcon from '@mui/icons-material/VisibilityOff';
 import axios from 'axios'
+import { setCookie,getCookie,hasCookie,deleteCookie  } from 'cookies-next';
 
 
 const schema = yup.object({
@@ -53,8 +54,10 @@ export default function LoginPage({changeLoginStatus}){
                 password:data.password,
                 id:id
             }).then((response) => {
+                debugger;
                 if (typeof window !== "undefined" && data.firstName.length > 0 ) {
-                    localStorage.setItem("loginStatus", true)  
+                    localStorage.setItem("loginStatus", true) 
+                    setCookie('token', response.data.token, {maxAge: 31556926}); 
                 }
                 changeLoginStatus();
                 console.log(response);

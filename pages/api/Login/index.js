@@ -2,6 +2,9 @@ import dbConnect from "../../../utils/mongo"
 import User from '../../../models/User'
 import mongoose from 'mongoose'
 import bcrypt from "bcrypt"
+import jwt from 'jsonwebtoken';
+
+const KEY = process.env.JWT_KEY;
 
 export default async function handler(req, res) {
     // console.log(req)
@@ -23,7 +26,22 @@ export default async function handler(req, res) {
             if(!validPassword){
                 return res.status(400).json("Invalid username or password.");
             }
-            return res.status(200).json("Logged in successfully.");
+            else{
+                const payload = {
+                    id: id,
+                    email: user.email,
+                    createdAt: user.createdAt,
+                  };
+                  /* Sign token */
+                  const token = await jwt.sign(
+                    payload,
+                    KEY,
+                    {
+                      expiresIn: 31556926, // 1 year in seconds
+                    }
+                  );
+                  return res.status(200).json({"message":"Logged in successfully.", token:'Bearer '+ token});
+            }
             console.log(req.body)
         }
         catch(err){
