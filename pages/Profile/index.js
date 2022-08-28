@@ -1,4 +1,4 @@
-import {useState,useEffect} from 'react'
+import React, {useState,useEffect} from 'react'
 import styles from '../../styles/profile.module.scss'
 import Image from 'next/image'
 import PersonIcon from '@mui/icons-material/Person';
@@ -26,6 +26,14 @@ import { style } from '@mui/system';
 import FileBase64 from 'react-file-base64';
 import defaultPic from "../../public/defaultPic.png"
 import UserDetailModel from '../../components/UserDetailModel.jsx'
+import axios from 'axios'
+import { getCookie,hasCookie } from 'cookies-next';
+import Snackbar from '@mui/material/Snackbar';
+import MuiAlert from '@mui/material/Alert';
+
+const Alert = React.forwardRef(function Alert(props, ref) {
+    return <MuiAlert elevation={6} ref={ref} variant="filled" {...props} />;
+});
 
 export default function profile(){
     const [pic,setPic] = useState("");
@@ -33,16 +41,91 @@ export default function profile(){
     const [open, setOpen] = useState(false);
     const handleOpen = () => setOpen(true);
     const handleClose = () => setOpen(false);
-    // const uploadImage = (e)=>{
-    //     debugger;
-
-    // }
+    const [userDetails,setUserDetails] = useState(null);
+    const [openSnackBar, setOpenSnackBar] = React.useState({
+        val:false,
+        message:""
+    });
+    const [severity, setSeverity] = React.useState('success')
+    const handleSnackBar = (val) => {
+        if(val === 'success'){
+            setOpenSnackBar({...openSnackBar,val:true,message: 'Details updated successfully.'});
+        }
+        else{
+            setOpenSnackBar({...openSnackBar,val:true,message: 'There is some issue in updating the details right now. Please try again later.'});
+        }
+        setSeverity(val)
+    };
+    const handleSnackBarImage = (val) => {
+        if(val === 'success'){
+            setOpenSnackBar({...openSnackBar,val:true,message: 'Profile Pic updated successfully.'});
+        }
+        else{
+            setOpenSnackBar({...openSnackBar,val:true,message: 'There is some issue in updating the details right now. Please try again later.'});
+        }
+        setSeverity(val)
+    };
+    const handleCloseSnackBar = (event, reason) => {
+        if (reason === 'clickaway') {
+          return;
+        }
+        
+        setOpenSnackBar({...openSnackBar,val:false,message: ''});
+    };
     useEffect(() => {
         // Perform localStorage action
         if(localStorage.getItem("image")){
             document.getElementById("imagePreview").setAttribute("src", localStorage.getItem("image"))
         }
     }, [])
+
+    useEffect(() => {
+        handler();
+    },[])
+    const handler = async()=>{
+        let token = "";
+        if(hasCookie){
+            token = getCookie('token')
+        }
+        let id = localStorage.getItem("id")
+        axios.get('/api/Profile',{
+            headers: {'Authorization': token}
+        })
+        .then((res)=>{
+            if(res.data.message === "success"){
+                setUserDetails(res.data.user);
+            }
+        })
+        .catch((error)=>{
+            console.log(error);
+        });
+    }
+    const uploadImage = async(e)=>{
+        let id = localStorage.getItem("id")
+        try {
+            if(hasCookie){
+                console.log(getCookie('token'))
+                let tok = getCookie('token');
+                await axios.put('/api/Profile', {
+                    img:image,
+                    id:id,
+                    token:tok
+                }).then((response)=>{
+                    console.log(response)
+                    handleSnackBarImage('success')
+                    handler();
+                })
+                .catch((error)=>{
+                    handleSnackBarImage('error')
+                })
+            }
+            // console.log(response);
+        } 
+        catch (error) {
+            console.error(error);
+        }
+    }
+    console.log(userDetails)
     // if (typeof window !== 'undefined') {
     //     if(localStorage.getItem("image")){
     //         document.getElementById("imagePreview").setAttribute("src", localStorage.getItem("image"))
@@ -58,7 +141,7 @@ export default function profile(){
                             <PersonIcon color="primary" sx={{ fontSize: {xs:40,md:60}
                             }}/>:
                             <Image
-                            src={""}
+                            src={userDetails?.profilePic}
                             height={400}
                             alt="Picture of the author"
                             layout="responsive"
@@ -69,17 +152,17 @@ export default function profile(){
                         <div className={styles.userData}>
                             <h3>UserDetails</h3>
                             <p>
-                                <strong style={{color:"rgb(14, 104, 182)"}}>Name</strong> <br/>Harshit Kashyap</p>
+                                <strong style={{color:"rgb(14, 104, 182)"}}>Name</strong> <br/>{userDetails?.username? userDetails.username:"NA"}</p>
                             <p>
-                                <strong style={{color:"rgb(14, 104, 182)"}}>Phone No.</strong> <br/> XXXXXXXXXX</p>
+                                <strong style={{color:"rgb(14, 104, 182)"}}>Phone No.</strong> <br/> {userDetails?.phone? userDetails.phone:"NA"}</p>
                             <p>
-                                <strong style={{color:"rgb(14, 104, 182)"}}>Address</strong> <br/>ABCD</p>
+                                <strong style={{color:"rgb(14, 104, 182)"}}>Address</strong> <br/>{userDetails?.address? userDetails.address:"NA"}</p>
                             <p>
-                                <strong style={{color:"rgb(14, 104, 182)"}}>Email</strong><br/>ABCDEFGHIJKL@gmail.com
+                                <strong style={{color:"rgb(14, 104, 182)"}}>Email</strong><br/>{userDetails?.email? userDetails.email:"NA"}
                             </p>
                             <p>
                                 <strong style={{color:"rgb(14, 104, 182)"}}>Password</strong><br/>
-                                ABSJNDSN
+                                ********
                                 {/* <Button sx={{pl:0,fontWeight:"bold"}} onClick={()=>{
                                     alert(`SMS your old password`)
                                 }}>Change</Button> */}
@@ -240,7 +323,8 @@ export default function profile(){
                                 <div className={styles.upload}>
                                     <p>Add Display Picture</p>
                                     <div>
-                                        {image.length == 0  ? <img src="https://static-media-prod-cdn.itsre-sumo.mozilla.net/static/default-FFA-avatar.2f8c2a0592bda1c5.png"></img>:<img src ={image} id="imagePreview" />}
+                                        {userDetails?.profilePic && userDetails.profilePic.length != 0  ? <img src ={userDetails?.profilePic} id="imagePreview" />:<img src="https://static-media-prod-cdn.itsre-sumo.mozilla.net/static/default-FFA-avatar.2f8c2a0592bda1c5.png"></img>
+                                        }
                                     </div>
                                     <FileBase64 type="file" multiple={false} onDone={({base64}) => {
                                         setImage(base64)}
@@ -266,9 +350,15 @@ export default function profile(){
                         </div>
                     </div>
                 </div>
-                {open ? <UserDetailModel open={open} handleOpen={handleOpen} handleClose={handleClose}></UserDetailModel> : null}
+                {open ? <UserDetailModel open={open} handleOpen={handleOpen} handleClose={handleClose} handler={handler} userDetails={userDetails} handleSnackBar={handleSnackBar}></UserDetailModel> : null}
                 {/* <div className={styles.row3}></div> */}
             </div>
+            <Snackbar open={openSnackBar.val} autoHideDuration={3000} onClose={handleCloseSnackBar} 
+            anchorOrigin={{ vertical:"top", horizontal:'right' }}>
+                <Alert onClose={handleCloseSnackBar} severity={severity} sx={{ width: '100%' }}>
+                    {openSnackBar.message}
+                </Alert>
+            </Snackbar>
         </div>
     )
 }

@@ -1,11 +1,17 @@
 import { useRouter } from 'next/router'
-import { useState,useEffect } from "react";
+import React, { useState,useEffect } from "react";
 import styles from '../../styles/payment.module.scss'
 import Image from 'next/image'
 import Payment from '../../public/Payment.jpg'
 import Card from '../../public/CreditCard.jpg'
 import TextField from '@mui/material/TextField';
 import Button from '@mui/material/Button';
+import Snackbar from '@mui/material/Snackbar';
+import MuiAlert from '@mui/material/Alert';
+
+const Alert = React.forwardRef(function Alert(props, ref) {
+    return <MuiAlert elevation={6} ref={ref} variant="filled" {...props} />;
+});
 
 
 export default function PaymentType(){
@@ -19,6 +25,11 @@ export default function PaymentType(){
             cvv:null
         }
     ]);
+    const [open, setOpen] = React.useState({
+        val:false,
+        message:""
+    });
+    const [severity, setSeverity] = React.useState('success')
     let amount = 0;
     if (typeof window !== "undefined") {
         // debugger;
@@ -36,7 +47,8 @@ export default function PaymentType(){
         var accountNumber = formData.get('accountNumber');
         var cvv = formData.get('cvv');
         if(isNaN(cvv) || expiryDate.length == 0 || accountNumber.length == 0){
-            alert("Please fill all the card details");
+            // alert("Please fill all the card details.");
+            handleSnackBar('warning');
         } 
         else{
             setFormVal([...formVal,{
@@ -44,12 +56,29 @@ export default function PaymentType(){
                 accountNumber:accountNumber,
                 cvv:cvv
             }]);
-            alert("Payment Successful");
+            // alert("Payment Successful");
+            handleSnackBar('success');
             localStorage.removeItem('name');
             router.push('/')
         }
         // console.log(formVal,rating,restaurantReview,appReview);
     }
+    const handleSnackBar = (val) => {
+        if(val === 'success'){
+            setOpen({...open,val:true,message: 'Payment successful.'});
+        }
+        else{
+            setOpen({...open,val:true,message: 'Please fill all the card details.'});
+        }
+        setSeverity(val)
+    };
+    const handleClose = (event, reason) => {
+        if (reason === 'clickaway') {
+          return;
+        }
+        
+        setOpen({...open,val:false,message: ''});
+    };
     
     return(
         <div className={styles.paymentContainer}>
@@ -81,6 +110,12 @@ export default function PaymentType(){
                     </div>
                 </div>
             </div>
+            <Snackbar open={open.val} autoHideDuration={3000} onClose={handleClose} 
+            anchorOrigin={{ vertical:"top", horizontal:'right' }}>
+                <Alert onClose={handleClose} severity={severity} sx={{ width: '100%' }}>
+                    {open.message}
+                </Alert>
+            </Snackbar>
         </div>
     )
 }

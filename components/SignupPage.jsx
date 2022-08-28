@@ -1,4 +1,4 @@
-import {React, useState,useEffect} from 'react'
+import React, { useState,useEffect} from 'react'
 import Image from 'next/image'
 import {useRouter} from 'next/router';
 import Link from 'next/link'
@@ -9,6 +9,14 @@ import * as yup from "yup";
 import VisibilityIcon from '@mui/icons-material/Visibility';
 import VisibilityOffIcon from '@mui/icons-material/VisibilityOff';
 import axios from 'axios'
+import Stack from '@mui/material/Stack';
+import Button from '@mui/material/Button';
+import Snackbar from '@mui/material/Snackbar';
+import MuiAlert from '@mui/material/Alert';
+
+const Alert = React.forwardRef(function Alert(props, ref) {
+  return <MuiAlert elevation={6} ref={ref} variant="filled" {...props} />;
+});
 
 const schema = yup.object({
     firstName: yup.string().required('Firstname is required.'),
@@ -29,6 +37,11 @@ export default function SignupPage({changeSignupStatus}){
     //     e.preventDefault()
     //     router.push(href)
     // }
+    const [open, setOpen] = React.useState({
+        val:false,
+        message:""
+    });
+    const [severity, setSeverity] = React.useState('success')
     const defaultValues = {
         firstName: "",
         lastName: "",
@@ -58,18 +71,39 @@ export default function SignupPage({changeSignupStatus}){
                     localStorage.setItem("signupStatus", true) 
                     localStorage.setItem("id", response.data.user._id)   
                 }
+                if(response.data.user.username.length > 0){
+                    handleSnackBar('success');
+                }
+                    
                 changeSignupStatus();
                 console.log(response);
             })
         } 
         catch (error) {
+            handleSnackBar('error');
             console.error("error",error);
         }
     };
     const handleClick = (e)=>{
         setShow(!show);
     }
-
+    const handleSnackBar = (val) => {
+        if(val === 'success'){
+            setOpen({...open,val:true,message: 'User account created successfully.'});
+        }
+        else{
+            setOpen({...open,val:true,message: 'User could not be created successfully. Please try again later'});
+        }
+        setSeverity(val)
+      };
+    
+    const handleClose = (event, reason) => {
+        if (reason === 'clickaway') {
+          return;
+        }
+        
+        setOpen({...open,val:false,message: ''});
+    };
     return(
         <div className={ styles.signup_container } style={{display: 'flex',justifyContent: 'flex-start',alignItems: 'center'}}>
             <div className={ styles.row1 } style={{backgroundColor:"#1040c3",display: 'flex',justifyContent: 'center',alignItems: 'center',color:"floralwhite",fontStyle:"italic",
@@ -117,6 +151,12 @@ export default function SignupPage({changeSignupStatus}){
                     </div>
                 </div>
             </div>
+            <Snackbar open={open.val} autoHideDuration={4000} onClose={handleClose} 
+                    anchorOrigin={{ vertical:"top", horizontal:'right' }}>
+                        <Alert onClose={handleClose} severity={severity} sx={{ width: '100%' }}>
+                            {open.message}
+                        </Alert>
+            </Snackbar>
         </div>
     )
 }

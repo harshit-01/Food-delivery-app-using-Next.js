@@ -19,7 +19,15 @@ const UserSchema = new mongoose.Schema({
     },
     address:String,
     totalOrders:Number,
-    profilePic:String
+    profilePic:String,
+    phone:{
+        type:Number,
+        maxLength:10
+    },
+    plan:{
+        type:String,
+        variant:String,
+    }
 },
     { timestamps:true }
 );

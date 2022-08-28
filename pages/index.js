@@ -6,9 +6,9 @@ import FoodCarousel from '../components/FoodCarousel'
 import { setCookie,getCookie,hasCookie,deleteCookie  } from 'cookies-next';
 
 export default function Home() {
-  if(hasCookie){
-    console.log(getCookie('token'))
-  }
+  // if(hasCookie){
+  //   console.log(getCookie('token'))
+  // }
   return (
     <div>
       <Head>

@@ -31,7 +31,7 @@ export default async function handler(req, res) {
                     id: id,
                     email: user.email,
                     createdAt: user.createdAt,
-                  };
+                };
                   /* Sign token */
                   const token = await jwt.sign(
                     payload,

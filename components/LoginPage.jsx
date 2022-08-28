@@ -1,4 +1,4 @@
-import {React, useState,useEffect} from 'react'
+import React,{ useState,useEffect} from 'react'
 import Image from 'next/image'
 import {useRouter} from 'next/router';
 import Link from 'next/link'
@@ -10,8 +10,12 @@ import VisibilityIcon from '@mui/icons-material/Visibility';
 import VisibilityOffIcon from '@mui/icons-material/VisibilityOff';
 import axios from 'axios'
 import { setCookie,getCookie,hasCookie,deleteCookie  } from 'cookies-next';
+import Snackbar from '@mui/material/Snackbar';
+import MuiAlert from '@mui/material/Alert';
 
-
+const Alert = React.forwardRef(function Alert(props, ref) {
+    return <MuiAlert elevation={6} ref={ref} variant="filled" {...props} />;
+});
 const schema = yup.object({
     firstName: yup.string().required('Firstname is required.'),
     email: yup.string().email('Please provide a valid email.'),
@@ -30,10 +34,15 @@ export default function LoginPage({changeLoginStatus}){
     //     router.push(href)
     // }
     const defaultValues = {
-        firstName: "bill",
-        lastName: "luo",
-        email: "a5@gmail.com"
+        firstName: "",
+        lastName: "",
+        email: ""
     };
+    const [open, setOpen] = React.useState({
+        val:false,
+        message:""
+    });
+    const [severity, setSeverity] = React.useState('success')
     const { register, handleSubmit, formState:{ errors } } = useForm({
         resolver: yupResolver(schema),
         defaultValues
@@ -54,14 +63,15 @@ export default function LoginPage({changeLoginStatus}){
                 password:data.password,
                 id:id
             }).then((response) => {
-                debugger;
                 if (typeof window !== "undefined" && data.firstName.length > 0 ) {
                     localStorage.setItem("loginStatus", true) 
                     setCookie('token', response.data.token, {maxAge: 31556926}); 
                 }
+                handleSnackBar('success');
                 changeLoginStatus();
-                console.log(response);
+                // console.log(response);
             }).catch((err) => {
+                handleSnackBar('error');
                 console.log("Incorrect credentials provided")
             })
         } 
@@ -72,6 +82,22 @@ export default function LoginPage({changeLoginStatus}){
     const handleClick = (e)=>{
         setShow(!show);
     }
+    const handleSnackBar = (val) => {
+        if(val === 'success'){
+            setOpen({...open,val:true,message: 'User loggedin successfully.'});
+        }
+        else{
+            setOpen({...open,val:true,message: 'Incorrect credentials provided'});
+        }
+        setSeverity(val)
+    };
+    const handleClose = (event, reason) => {
+        if (reason === 'clickaway') {
+          return;
+        }
+        
+        setOpen({...open,val:false,message: ''});
+    };
 
     return(
         <div className={ styles.container } style={{display: 'flex',justifyContent: 'flex-start',alignItems: 'center'}}>
@@ -116,6 +142,12 @@ export default function LoginPage({changeLoginStatus}){
                     </div>
                 </div>
             </div>
+            <Snackbar open={open.val} autoHideDuration={3000} onClose={handleClose} 
+            anchorOrigin={{ vertical:"top", horizontal:'right' }}>
+                <Alert onClose={handleClose} severity={severity} sx={{ width: '100%' }}>
+                    {open.message}
+                </Alert>
+            </Snackbar>
         </div>
     )
 }
