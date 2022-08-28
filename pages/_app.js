@@ -92,7 +92,7 @@ function MyApp({ Component, pageProps }) {
       if(isLoggedIn){
         return (
           <Layout logout={logout} cartItem={cartItem} setCartItem={setCartItem} details={details}>
-            <Component {...pageProps} cartVal={cartVal}/>
+            <Component {...pageProps} cartVal={cartVal} />
           </Layout>
         )
       }

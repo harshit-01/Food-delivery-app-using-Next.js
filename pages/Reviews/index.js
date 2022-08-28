@@ -29,13 +29,13 @@ export default function Review(){
     useEffect(() =>{
         handler();
     },[])
-    if(formVal.length === 0){
-        formVal.push({
-            appReview:"Great user interface, easy to access and order food",
-            restaurantReview:"Mcd - Great combo offers",
-            rating:4.2
-        })
-    }
+    // if(formVal.length === 0){
+    //     formVal.push({
+    //         appReview:"Great user interface, easy to access and order food",
+    //         restaurantReview:"Mcd - Great combo offers",
+    //         rating:4.2
+    //     })
+    // }
     const handler = async()=>{
         let token = "";
         if(hasCookie){
@@ -47,12 +47,16 @@ export default function Review(){
         })
         .then((res)=>{
             if(res.data.message === "success"){
-                formVal.push({
-                    appReview:"Great user interface, easy to access and order food",
-                    restaurantReview:"Mcd - Great combo offers",
-                    rating:4.2
-                })
-                setFormVal(res.data.review);
+                if(formVal.length === 0){
+                    formVal.push({
+                        appReview:"Great user interface, easy to access and order food",
+                        restaurantReview:"Mcd - Great combo offers",
+                        rating:4.2
+                    })
+                }
+                if(res?.data?.review.length > 0 && res.data.review[0]?.newReview)
+                // setFormVal(res.data.review[0]?.newReview);
+                setFormVal([...res.data.review[0]?.newReview].reverse())
             }
         })
         .catch((error)=>{
@@ -76,13 +80,10 @@ export default function Review(){
             let id = localStorage.getItem("id")
             axios.post('/api/Reviews',{appReview,restaurantReview,rating,token,id})
             .then((res)=>{
+                // debugger;
                 if(res.data.message === "success"){
-                    setFormVal([...formVal,{
-                        appReview:res.data.review.appReview,
-                        restaurantReview:res.data.review.restaurantReview,
-                        rating:res.data.review.rating
-                    }]);
                     handleSnackBar('success');
+                    handler();
                 }
             })
             .catch((error)=>{
@@ -97,7 +98,7 @@ export default function Review(){
     }
     const handleSnackBar = (val) => {
         if(val === 'success'){
-            setOpen({...open,val:true,message: 'User reveiw saved successfully.'});
+            setOpen({...open,val:true,message: 'User review saved successfully.'});
         }
         else if(val === 'warning'){
             setOpen({...open,val:true,message: 'Please fill all the fields of the form.'});
@@ -139,8 +140,8 @@ export default function Review(){
                         <ListItem alignItems="flex-start">
                             <ListItemAvatar>
                             { 
-                                i%2 == 0 ? <Avatar alt="Remy Sharp" src="/static/images/avatar/1.jpg" sx={{ bgcolor: deepOrange[500] }}/> : 
-                                <Avatar alt="Remy Sharp" src="/static/images/avatar/1.jpg" sx={{ bgcolor: deepPurple[500] }}/>
+                                i%2 == 0 ? <Avatar alt={val?.username?val.username:"Ben"} src="/static/images/avatar/1.jpg" sx={{ bgcolor: deepOrange[500] }}/> : 
+                                <Avatar alt={val?.username? val.username:"Ben"} src="/static/images/avatar/1.jpg" sx={{ bgcolor: deepPurple[500] }}/>
                             }
                             </ListItemAvatar>
                             <ListItemText
@@ -179,7 +180,7 @@ export default function Review(){
                                     </>
                                     
                                     <br />
-                                    <em>Reviewed By : Jack</em> 
+                                    <em>Reviewed By : {val?.username}</em> 
                                 </>
                             }
                             />

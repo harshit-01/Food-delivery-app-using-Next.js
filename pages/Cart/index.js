@@ -9,13 +9,34 @@ import Paper from '@mui/material/Paper';
 import Button from '@mui/material/Button';
 import Link from 'next/link'
 import { useRouter } from 'next/router';
+import axios from 'axios'
+import { getCookie,hasCookie } from 'cookies-next';
 // import { ComponentToPrint } from './ComponentToPrint';
 // import dynamic from 'next/dynamic'
 
 
 export default function Cart() {
     const router = useRouter();
+    const [details,setDetails] = React.useState("");
     const [billContent,setBillContent] = React.useState([]);
+    const handler = async()=>{
+        let token = "";
+        if(hasCookie){
+            token = getCookie('token')
+        }
+        let id = localStorage.getItem("id")
+        axios.get('/api/Profile',{
+            headers: {'Authorization': token}
+        })
+        .then((res)=>{
+            if(res.data.message === "success"){
+                setDetails(res.data.user);
+            }
+        })
+        .catch((error)=>{
+            console.log(error);
+        });
+    }
     React.useEffect(() => {
         // Perform localStorage action
         if (typeof window !== "undefined") {
@@ -23,7 +44,9 @@ export default function Cart() {
             setBillContent(JSON.parse(localStorage.getItem("name")));
           }
         }
+        handler();
     }, [])
+    // console.log(details);
     const componentRef = React.useRef();
     const TAX_RATE = 0.10;
     function ccyFormat(num) {
@@ -83,7 +106,7 @@ export default function Cart() {
     const invoiceTotal = invoiceTaxes + invoiceSubtotal;
     return (
     <div style={{margin:"auto",marginTop:"30px",width:"80%",height:"105vh"}} ref={componentRef}>
-        <p style={{textAlign:"center",fontSize:"24px",fontWeight:"bold",color:"rgb(27, 118, 160)"}}>Invoice</p>
+        <p style={{textAlign:"center",fontSize:"24px",fontWeight:"bold",color:"rgb(27, 118, 160)"}}>Invoice {billContent && billContent.length > 0 ? '(' + `${billContent[0]?.name}` +')':null}</p>
         <TableContainer component={Paper}>
         <Table sx={{ minWidth: 700,border:"1px solid gray" }} aria-label="spanning table">
             <TableHead>
@@ -130,14 +153,14 @@ export default function Cart() {
                 <TableCell align="right" sx={{ fontWeight:"bold",fontSize:"16px"}}>Rs {ccyFormatTotal(invoiceTotal)}</TableCell>
             </TableRow>
             <TableRow>
-                <TableCell colSpan={2} sx={{ fontWeight:"bold",fontSize:"14px"}}>Deliver to Address</TableCell>
-                <TableCell>50</TableCell>
+                <TableCell  sx={{ fontWeight:"bold",fontSize:"14px"}}>Deliver to Address</TableCell>
+                <TableCell>{details?.address}</TableCell>
             </TableRow>
             </TableBody>
         </Table>
         </TableContainer>
         <small>*Taxes include GST and delivery charges.</small><br/>
-        <small>*While printing invoice please select landscape mode.</small><br/>
+        <small>*While printing invoice please select <strong>landscape</strong> mode.</small><br/>
         <div style={{width:"100%",textAlign: 'right'}}>
             <Link href="javascript:window.print()">
                 <Button variant="outlined" color="warning" sx={{mt:2,mb:2,fontSize:"14px"}}>

@@ -20,7 +20,7 @@ export default async function handler(req, res) {
         else{
             const reviews = await Review.find();
             console.log(reviews)
-            res.status(200).json({message:"success",review:reviews[0].newReview})
+            res.status(200).json({message:"success",review:reviews})
         }
     }
 
@@ -52,7 +52,9 @@ export default async function handler(req, res) {
                 if (error) {
                     return res.status(500).json(error)
                 }
-                res.status(201).json({message:"success",valid:"User is verified","data":result})
+                else{
+                    res.status(201).json({message:"success",valid:"User is verified","data":result})
+                }
             });
         }
     }

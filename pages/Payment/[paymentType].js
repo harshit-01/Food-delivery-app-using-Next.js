@@ -59,13 +59,15 @@ export default function PaymentType(){
             // alert("Payment Successful");
             handleSnackBar('success');
             localStorage.removeItem('name');
-            router.push('/')
+            setTimeout(function(){
+                router.push('/')
+            },4000)
         }
         // console.log(formVal,rating,restaurantReview,appReview);
     }
     const handleSnackBar = (val) => {
         if(val === 'success'){
-            setOpen({...open,val:true,message: 'Payment successful.'});
+            setOpen({...open,val:true,message: 'Payment successful. We will sent you the delivery guy details via email. So please check your email. Your order will be arriving soon.'});
         }
         else{
             setOpen({...open,val:true,message: 'Please fill all the card details.'});
@@ -110,9 +112,9 @@ export default function PaymentType(){
                     </div>
                 </div>
             </div>
-            <Snackbar open={open.val} autoHideDuration={3000} onClose={handleClose} 
+            <Snackbar open={open.val} autoHideDuration={5000} onClose={handleClose} 
             anchorOrigin={{ vertical:"top", horizontal:'right' }}>
-                <Alert onClose={handleClose} severity={severity} sx={{ width: '100%' }}>
+                <Alert onClose={handleClose} severity={severity} sx={{ width: '75%' }}>
                     {open.message}
                 </Alert>
             </Snackbar>
