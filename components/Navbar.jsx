@@ -23,7 +23,7 @@ import {useRouter} from 'next/router';
 const pages = ['Home','Dashboard','Menu','Plans','Reviews'];
 const settings = ['Profile','Dashboard','Groceries','Logout'];
 
-const Navbar = ({logout,cartItem,setCartItem}) => {
+const Navbar = ({logout,cartItem,setCartItem,details}) => {
   console.log(cartItem)
   const router = useRouter();
   const [anchorElNav, setAnchorElNav] = React.useState(null);
@@ -63,12 +63,24 @@ const Navbar = ({logout,cartItem,setCartItem}) => {
     return color;
   }
   function stringAvatar(name) {
-    return {
-      sx: {
-        bgcolor: stringToColor(name),
-      },
-      children: `${name.split(' ')[0][0]}${name.split(' ')[1][0]}`,
-    };
+    const firstName = name.split(' ')[0];
+    const lastName = name.split(' ')[1];
+    if(firstName && lastName) {
+      return {
+        sx: {
+          bgcolor: stringToColor(name),
+        },
+        children: `${name.split(' ')[0][0]}${name.split(' ')[1][0]}`,
+      };
+    }
+    else{
+      return {
+        sx: {
+          bgcolor: stringToColor(name),
+        },
+        children: `${name.split(' ')[0][0]}`,
+      };
+    }
   }
   React.useEffect(() => {
     if(typeof window !== "undefined"){
@@ -197,7 +209,7 @@ const Navbar = ({logout,cartItem,setCartItem}) => {
           <Box sx={{ flexGrow: 0 }}>
             <Tooltip title="Open settings">
               <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
-                <Avatar  {...stringAvatar('Kent Dodds')}/>
+                <Avatar  {...stringAvatar(`${details && details.username ? details.username :"Ben Adams"}`)} />
               </IconButton>
             </Tooltip>
             <Menu

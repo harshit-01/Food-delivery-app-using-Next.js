@@ -1,4 +1,4 @@
-import { useState } from "react";
+import React, { useState ,useEffect } from "react";
 import styles from '../../styles/dashboard_cards.module.scss';
 import Button from '@mui/material/Button';
 import List from '@mui/material/List';
@@ -10,38 +10,117 @@ import Avatar from '@mui/material/Avatar';
 import Typography from '@mui/material/Typography';
 import { deepOrange, deepPurple } from '@mui/material/colors';
 import  Rating  from "../../components/Ratings.jsx"
+import Snackbar from '@mui/material/Snackbar';
+import MuiAlert from '@mui/material/Alert';
+import { getCookie,hasCookie } from 'cookies-next';
+import axios from 'axios'
+
+const Alert = React.forwardRef(function Alert(props, ref) {
+    return <MuiAlert elevation={6} ref={ref} variant="filled" {...props} />;
+});
 
 export default function Review(){
-    const [formVal,setFormVal] = useState([
-        {
+    const [formVal,setFormVal] = useState([]);
+    const [val, setVal] = useState(3);
+    const [open, setOpen] = React.useState({
+        val:false,
+        message:""
+    });
+    useEffect(() =>{
+        handler();
+    },[])
+    if(formVal.length === 0){
+        formVal.push({
             appReview:"Great user interface, easy to access and order food",
             restaurantReview:"Mcd - Great combo offers",
             rating:4.2
+        })
+    }
+    const handler = async()=>{
+        let token = "";
+        if(hasCookie){
+            token = getCookie('token')
         }
-    ]);
-    const [val, setVal] = useState(0);
+        let id = localStorage.getItem("id")
+        axios.get('/api/Reviews',{
+            headers: {'Authorization': token}
+        })
+        .then((res)=>{
+            if(res.data.message === "success"){
+                formVal.push({
+                    appReview:"Great user interface, easy to access and order food",
+                    restaurantReview:"Mcd - Great combo offers",
+                    rating:4.2
+                })
+                setFormVal(res.data.review);
+            }
+        })
+        .catch((error)=>{
+            console.log(error);
+        });
+    }
+    const [severity, setSeverity] = React.useState('success')
     const handleClick = (e)=>{
         e.preventDefault();
         var formEl = document.forms.ReviewForm;
         var formData = new FormData(formEl);
         var appReview = formData.get('app_review');
+        console.log(appReview.length)
         var restaurantReview = formData.get('restaurant_review');
         var rating = val;
-        setFormVal([...formVal,{
-            appReview:appReview,
-            restaurantReview:restaurantReview,
-            rating:rating
-        }]);
-
+        if(appReview?.length > 0 && restaurantReview?.length > 0){
+            let token = "";
+            if(hasCookie){
+                token = getCookie('token')
+            }
+            let id = localStorage.getItem("id")
+            axios.post('/api/Reviews',{appReview,restaurantReview,rating,token,id})
+            .then((res)=>{
+                if(res.data.message === "success"){
+                    setFormVal([...formVal,{
+                        appReview:res.data.review.appReview,
+                        restaurantReview:res.data.review.restaurantReview,
+                        rating:res.data.review.rating
+                    }]);
+                    handleSnackBar('success');
+                }
+            })
+            .catch((error)=>{
+                handleSnackBar('error');
+                console.log(error);
+            });
+        }
+        else{
+            handleSnackBar('warning');
+        }
         console.log(formVal,rating,restaurantReview,appReview);
     }
+    const handleSnackBar = (val) => {
+        if(val === 'success'){
+            setOpen({...open,val:true,message: 'User reveiw saved successfully.'});
+        }
+        else if(val === 'warning'){
+            setOpen({...open,val:true,message: 'Please fill all the fields of the form.'});
+        }
+        else{
+            setOpen({...open,val:true,message: 'Internal Server Issue: Please try again later.'});
+        }
+        setSeverity(val)
+    };
+    const handleClose = (event, reason) => {
+        if (reason === 'clickaway') {
+          return;
+        }
+        
+        setOpen({...open,val:false,message: ''});
+    };
     console.log(formVal);
     return(
         <>
             <div className={styles.container_review}>
                 <form action="" method="post" id="ReviewForm">
                     <label htmlFor="app_review" className={styles.label}>App review</label><br />
-                    <textarea className={styles.textarea} id="app_review" name="app_review" placeholder="Please give a review."></textarea><br />
+                    <textarea className={styles.textarea} id="app_review" name="app_review" placeholder="Please give a review." required></textarea><br />
                     <label htmlFor="restaurant_review" className={styles.label}>Any Restaurant Review</label><br />
                     <textarea className={styles.textarea} id="restaurant_review" name="restaurant_review" placeholder="Please mention the name of the restaturant followed by a give a review in then next line."></textarea><br/>
                     <label htmlFor="rating" className={styles.label}>Rating (between 1 and 5):</label><br/>
@@ -111,6 +190,12 @@ export default function Review(){
                 })
             }
             </div>
+            <Snackbar open={open.val} autoHideDuration={3000} onClose={handleClose} 
+            anchorOrigin={{ vertical:"top", horizontal:'right' }}>
+                <Alert onClose={handleClose} severity={severity} sx={{ width: '100%' }}>
+                    {open.message}
+                </Alert>
+            </Snackbar>
         </>
     )
 }

@@ -67,7 +67,7 @@ export default async function handler(req, res) {
             } 
             else{
                 const user = await User.findByIdAndUpdate(id,{profilePic:img})
-                res.status(200).json({message:"success",valid:"Image stored in db successfully",img:user})
+                res.status(201).json({message:"success",valid:"Image stored in db successfully",img:user})
             }
         }
         else{
@@ -84,7 +84,7 @@ export default async function handler(req, res) {
             } 
             else{
                 updateDetails(data,password,address);
-                res.status(200).json({message:"success",valid:"User is verified"})
+                res.status(201).json({message:"success",valid:"User is verified"})
             }
         }
     }

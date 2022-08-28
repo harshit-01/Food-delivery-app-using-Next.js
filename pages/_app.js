@@ -4,12 +4,15 @@ import Login from './Login/index.js';
 import Signup from './Signup/index.js';
 import '../styles/globals.css'
 import {useRouter} from 'next/router';
+import axios from 'axios'
+import { getCookie,hasCookie } from 'cookies-next';
 
 function MyApp({ Component, pageProps }) {
   const router = useRouter();
   const [isSignedIn,setIsSignedIn] = useState(false);
   const [isLoggedIn,setIsLoggedIn] = useState(false);
   const [cartItem,setCartItem] = useState(0);
+  const [details,setDetails] = useState(null);
   const noLayout = ['/Menu', '/about']
   console.log(router,noLayout.indexOf(router.asPath))
   console.log(isLoggedIn)
@@ -26,6 +29,7 @@ function MyApp({ Component, pageProps }) {
         setIsSignedIn(localStorage.getItem("signupStatus"));
       }
     }
+    handler();
   }, [isLoggedIn,isSignedIn])
 
   const cartVal = () => {
@@ -56,6 +60,24 @@ function MyApp({ Component, pageProps }) {
     }
     router.push('/Login');
   }
+  const handler = async()=>{
+    let token = "";
+    if(hasCookie){
+        token = getCookie('token')
+    }
+    let id = localStorage.getItem("id")
+    axios.get('/api/Profile',{
+        headers: {'Authorization': token}
+    })
+    .then((res)=>{
+        if(res.data.message === "success"){
+            setDetails(res.data.user);
+        }
+    })
+    .catch((error)=>{
+        console.log(error);
+    });
+  }
   if(router.route === '/Signup' || (router.route === '/' && isSignedIn === false)){
     return <Signup changeSignupStatus={changeSignupStatus}/>
   }
@@ -69,7 +91,7 @@ function MyApp({ Component, pageProps }) {
     else {
       if(isLoggedIn){
         return (
-          <Layout logout={logout} cartItem={cartItem} setCartItem={setCartItem}>
+          <Layout logout={logout} cartItem={cartItem} setCartItem={setCartItem} details={details}>
             <Component {...pageProps} cartVal={cartVal}/>
           </Layout>
         )
