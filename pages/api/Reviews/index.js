@@ -33,29 +33,33 @@ export default async function handler(req, res) {
             res.status(404).json("Invalid User")
         } 
         else{
+            try{
             const user = await User.findById(id);
             console.log(user.username);
-            const newReview = {
+            const newUserReview = {
                 appReview: appReview,
                 restaurantReview: restaurantReview,
                 rating : rating,
                 username:user.username
             }
-            const query = {} // find Item to update.
-            const options = {
-                upsert: true,// upsert set to true to find an existing document if it exists or create a new one.
-                new: true,// new is set to true to create a new document if it doesn’t exist.
-                setDefaultsOnInsert: true
-            };
+            // const options = {
+            //     upsert: true,// upsert set to true to find an existing document if it exists or create a new one.
+            //     new: true,// new is set to true to create a new document if it doesn’t exist.
+            //     setDefaultsOnInsert: true
+            // };
+            let temp = await Review.find().lean();
+            if(temp){
+                temp = temp[0];
+            }
+            console.log(temp);
+            const result = await Review.findByIdAndUpdate(temp._id, {newReview: [...temp.newReview,newUserReview]});
+            res.status(201).json({"message":"success","valid":"User is verified",data:result})
+            conole.log("nkjnkbkjbkm")
 
-            await Review.findOneAndUpdate(query, { $push : {newReview}}, options, (error, result) => {
-                if (error) {
-                    return res.status(500).json(error)
-                }
-                else{
-                    res.status(201).json({message:"success",valid:"User is verified","data":result})
-                }
-            });
+            }
+            catch(err){
+                res.status(500).json({message:"error",data:err})
+            }
         }
     }
 }
