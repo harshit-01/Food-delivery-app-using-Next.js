@@ -136,7 +136,7 @@ export default function Review(){
                 {
                     formVal?.map((val,i)=>{
                     return (
-                    <List sx={{ width: '100%', bgcolor: 'b9b8b8' }}>
+                    <List key={i} sx={{ width: '100%', bgcolor: 'b9b8b8' }}>
                         <ListItem alignItems="flex-start">
                             <ListItemAvatar>
                             { 

@@ -98,13 +98,13 @@ export default function PaymentType(){
                     </div>
                     <div className={styles.form} >
                         <form action="" method="post"  id="PaymentForm">
-                            <label for="accountNumber">Account Number</label>
+                            <label htmlFor="accountNumber">Account Number</label>
                             <input type="text" name="accountNumber" placeholder="12345678901234" required></input>
-                            <label for="expiryDate">Expiry Date</label>
+                            <label htmlFor="expiryDate">Expiry Date</label>
                             <input type="text" name="expiryDate" placeholder="MM/YYYY" required></input>
-                            <label for="cvv">CVV</label>
+                            <label htmlFor="cvv">CVV</label>
                             <input type="number" max ="3" name="cvv" placeholder="123" required></input>
-                            <label for="Amount">Amount to Pay</label>
+                            <label htmlFor="Amount">Amount to Pay</label>
                             <input type="text"  name="amount" placeholder="Rs 5000" value ={plan === "Family" ? "Rs 400" : plan === "Individual" ? "Rs 300":amount}required></input>
                             {/* <input type="submit" onClick={handleClick}></input> */}
                             <Button  variant="outlined" color="success" sx ={{width:"40%",marginTop: "20px"}} onClick={handleClick}>Pay</Button>

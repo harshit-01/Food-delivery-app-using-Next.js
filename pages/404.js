@@ -3,7 +3,7 @@ import Image from 'next/image'
 import {useRouter} from 'next/router';
 import Link from 'next/link'
 
-export default function errorPage(){
+export default function ErrorPage(){
     const router = useRouter();
     // const handleClick = (e) => {
     //     e.preventDefault()

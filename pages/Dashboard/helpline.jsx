@@ -49,7 +49,7 @@ function a11yProps(index) {
   };
 }
 
-export default function helpline() {
+export default function Helpline() {
   const [value, setValue] = React.useState(0);
 
   const handleChange = (event, newValue) => {

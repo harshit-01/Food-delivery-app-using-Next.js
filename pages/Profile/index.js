@@ -35,7 +35,7 @@ const Alert = React.forwardRef(function Alert(props, ref) {
     return <MuiAlert elevation={6} ref={ref} variant="filled" {...props} />;
 });
 
-export default function profile(){
+export default function Profile(){
     const [pic,setPic] = useState("");
     const [image,setImage] = useState("");
     const [open, setOpen] = useState(false);
