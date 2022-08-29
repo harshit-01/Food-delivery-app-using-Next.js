@@ -53,7 +53,7 @@ export default function Cart() {
         return `${num.toFixed(2)}`;
     }
     function ccyFormatTotal(num) {
-        let a = num.toFixed(2)- 50;
+        let a = num.toFixed(2)- 12;
         if(a<0){
             a=0;
         }
