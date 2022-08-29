@@ -6,14 +6,10 @@ import Chip from '@mui/material/Chip';
 import Button from '@mui/material/Button';
 import UpdateIcon from '@mui/icons-material/Update';
 import Dosa from "../../public/dosa.jpg"
-import Pizza from "../../public/pizza.jpg"
+import Pizza from "../../public/Pizza.jpg"
 import Fries from "../../public/fries.jpg"
-import Vegetables from "../../public/Vegetables.jpg"
 import DalRoti from "../../public/dalRoti.jpeg"
 import FastDelivery from "../../public/fast_delivery1.png"
-import FastDelivery3 from "../../public/fast_delivery3.png"
-import FastDelivery5 from "../../public/fast_delivery5.jpg"
-import FastDelivery6 from "../../public/fast_delivery6.png"
 import BurgerCard from "../../public/burger_card.jpeg"
 import illustration from "../../public/illustration.jpg"
 import MouthWateringEmoji from "../../public/mouth_watering_emoji.jpg"
