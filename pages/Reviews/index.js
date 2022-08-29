@@ -81,15 +81,9 @@ export default function Review(){
             axios.post('/api/Reviews',{appReview,restaurantReview,rating,token,id})
             .then((res)=>{
                 // debugger;
-                if(res.data.message === "success"){
                     handleSnackBar('success');
                     handler();
-                }
             })
-            .catch((error)=>{
-                handleSnackBar('error');
-                console.log(error);
-            });
         }
         else{
             handleSnackBar('warning');
