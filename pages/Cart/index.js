@@ -145,7 +145,7 @@ export default function Cart() {
             </TableRow>
             <TableRow>
                 <TableCell colSpan={2} sx={{ fontWeight:"bold",fontSize:"14px"}}>Subscription Discount</TableCell>
-                <TableCell align="right">50</TableCell>
+                <TableCell align="right">12</TableCell>
             </TableRow>
             <TableRow>
                 <TableCell rowSpan={3} />
