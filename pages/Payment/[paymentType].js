@@ -60,7 +60,7 @@ export default function PaymentType(){
             handleSnackBar('success');
             localStorage.removeItem('name');
             setTimeout(function(){
-                router.push('/')
+                router.push('/TrackOrder')
             },4000)
         }
         // console.log(formVal,rating,restaurantReview,appReview);
