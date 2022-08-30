@@ -64,7 +64,7 @@ export default function Review(){
         });
     }
     const [severity, setSeverity] = React.useState('success')
-    const handleClick = (e)=>{
+    const handleClick = async(e)=>{
         e.preventDefault();
         var formEl = document.forms.ReviewForm;
         var formData = new FormData(formEl);
@@ -78,11 +78,11 @@ export default function Review(){
                 token = getCookie('token')
             }
             let id = localStorage.getItem("id")
-            axios.post('/api/Reviews',{appReview,restaurantReview,rating,token,id})
+            await axios.post('/api/Reviews',{appReview,restaurantReview,rating,token,id})
             .then((res)=>{
                 // debugger;
-                    handleSnackBar('success');
-                    handler();
+                handleSnackBar('success');
+                handler();
             })
         }
         else{
