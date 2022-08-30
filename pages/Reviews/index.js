@@ -82,12 +82,12 @@ export default function Review(){
             .then((res)=>{
                 // debugger;
                 handleSnackBar('success');
-                handler();
             })
         }
         else{
             handleSnackBar('warning');
         }
+        handler();
         console.log(formVal,rating,restaurantReview,appReview);
     }
     const handleSnackBar = (val) => {
