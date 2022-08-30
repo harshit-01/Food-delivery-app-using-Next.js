@@ -173,7 +173,7 @@ export default function Profile(){
                             
                         </div>
                         <Button variant="outlined" color="primary" startIcon={<UpdateIcon />}
-                            sx = {{mt:2,ml:{xs:1,lg:2},minWidth:{xs:"25%",md:"90%"},color:"black",fontWeight:"bold"}} className={styles.updateDetails} onClick={()=>handleOpen()}>
+                            sx = {{mt:2,ml:{xs:1,lg:2},minWidth:{xs:"25%",md:"70%"},color:"black",fontWeight:"bold"}} className={styles.updateDetails} onClick={()=>handleOpen()}>
                                 Update Details
                         </Button>
                     </div>

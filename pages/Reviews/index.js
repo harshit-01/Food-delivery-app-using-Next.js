@@ -78,16 +78,20 @@ export default function Review(){
                 token = getCookie('token')
             }
             let id = localStorage.getItem("id")
-            await axios.post('/api/Reviews',{appReview,restaurantReview,rating,token,id})
+            axios.post('/api/Reviews',{appReview,restaurantReview,rating,token,id})
             .then((res)=>{
                 // debugger;
                 handleSnackBar('success');
+                handler();
+            }).catch(err => {
+                alert('Review added')
+                handler();
             })
+
         }
         else{
             handleSnackBar('warning');
         }
-        handler();
         console.log(formVal,rating,restaurantReview,appReview);
     }
     const handleSnackBar = (val) => {

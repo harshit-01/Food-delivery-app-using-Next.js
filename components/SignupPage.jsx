@@ -145,7 +145,7 @@ export default function SignupPage({changeSignupStatus}){
                             <p>{errors.address ?<>*{errors.address?.message}</>:null}</p>
                             <input type="submit"/>
                             <Link href="/Login">
-                                <span style={{color: "rgb(14, 104, 182)",fontWeight:"bold",cursor: "pointer"}}>Already have an account? Login here</span>
+                                <span style={{color: "rgb(16, 64, 195)",fontWeight:"bold",cursor: "pointer"}}>Already have an account? Login here</span>
                             </Link>
                         </form>
                     </div>

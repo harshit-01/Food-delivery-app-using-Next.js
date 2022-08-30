@@ -54,7 +54,7 @@ export default async function handler(req, res) {
             console.log(temp);
             const result = await Review.findByIdAndUpdate(temp._id, {newReview: [...temp.newReview,newUserReview]});
             res.status(201).json({"message":"success","valid":"User is verified",data:result})
-            conole.log("nkjnkbkjbkm")
+            // console.log("nkjnkbkjbkm")
 
             }
             catch(err){
