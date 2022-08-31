@@ -2,6 +2,7 @@ import { useState,useEffect } from 'react';
 import Layout from '../components/Layout';
 import Login from './Login/index.js';
 import Signup from './Signup/index.js';
+import ErrorPage from './404.js';
 import '../styles/globals.css'
 import {useRouter} from 'next/router';
 import axios from 'axios'
@@ -80,6 +81,9 @@ function MyApp({ Component, pageProps }) {
   }
   if(router.route === '/Signup' || (router.route === '/' && isSignedIn === false)){
     return <Signup changeSignupStatus={changeSignupStatus}/>
+  }
+  else if(router.route !== '/Login' && isLoggedIn === false){
+    return <ErrorPage x={true}/>
   }
   else if(router.route === '/Login' && (isLoggedIn === false)){
     return <Login changeLoginStatus={changeLoginStatus}/>
