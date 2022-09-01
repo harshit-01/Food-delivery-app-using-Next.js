@@ -87,7 +87,7 @@ function MyApp({ Component, pageProps }) {
       return <ErrorPage x={true}/>
     }
     else{
-      return <Login changeLoginStatus={changeLoginStatus}/>
+      return <Signup changeSignupStatus={changeSignupStatus}/>
     }
   }
   else if(router.route === '/Login' && (isLoggedIn === false)){
