@@ -20,6 +20,7 @@ export default function Cart() {
     const router = useRouter();
     const [details,setDetails] = React.useState("");
     const [billContent,setBillContent] = React.useState([]);
+    const [planType,setPlanType] = React.useState(null);
     const handler = async()=>{
         let token = "";
         if(hasCookie){
@@ -45,16 +46,20 @@ export default function Cart() {
             setBillContent(JSON.parse(localStorage.getItem("name")));
           }
         }
+        if(hasCookie('planType') == true){
+            setPlanType(JSON.parse(getCookie('planType')));
+        }
         handler();
     }, [])
     // console.log(details);
     const componentRef = React.useRef();
-    const TAX_RATE = 0.10;
+    const TAX_RATE = 0.20;
     function ccyFormat(num) {
         return `${num.toFixed(2)}`;
     }
     function ccyFormatTotal(num) {
-        let a = num.toFixed(2)- 12;
+        let discount = planType === "Individual"? 40 : planType === "Family" ? 60 : 10;
+        let a = num.toFixed(2)-discount;
         if(a<0){
             a=0;
         }
@@ -145,8 +150,8 @@ export default function Cart() {
                 <TableCell align="right">{ccyFormat(invoiceTaxes)}</TableCell>
             </TableRow>
             <TableRow>
-                <TableCell colSpan={2} sx={{ fontWeight:"bold",fontSize:"14px"}}>Subscription Discount</TableCell>
-                <TableCell align="right">12</TableCell>
+                <TableCell colSpan={2} sx={{ fontWeight:"bold",fontSize:"14px"}}>Subscription Discount ({planType ? planType + ' Plan' : "Free"})</TableCell>
+                <TableCell align="right">{planType === "Individual" ? 40 : planType === "Family" ? 60 : 10}</TableCell>
             </TableRow>
             <TableRow>
                 <TableCell rowSpan={3} />

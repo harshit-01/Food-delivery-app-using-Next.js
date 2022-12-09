@@ -35,6 +35,7 @@ export default function Profile(){
     const [pic,setPic] = useState("");
     const [image,setImage] = useState("");
     const [open, setOpen] = useState(false);
+    const [planType,setPlanType] = useState(null);
     const handleOpen = () => setOpen(true);
     const handleClose = () => setOpen(false);
     const [userDetails,setUserDetails] = useState(null);
@@ -70,11 +71,16 @@ export default function Profile(){
     };
     useEffect(() => {
         // Perform localStorage action
-        if(localStorage.getItem("image")){
-            document.getElementById("imagePreview").setAttribute("src", localStorage.getItem("image"))
+        if (typeof window !== "undefined") {
+            if(localStorage.getItem("image")){
+                document.getElementById("imagePreview").setAttribute("src", localStorage.getItem("image"))
+            }
+        }
+        if(hasCookie('planType') == true){
+            setPlanType(JSON.parse(getCookie('planType')));
         }
     }, [])
-
+    console.log("1w11",planType)
     useEffect(() => {
         handler();
     },[])
@@ -166,9 +172,10 @@ export default function Profile(){
                             <p><strong style={{color:"rgb(14, 104, 182)"}}>Subscription Type</strong>
                                 <br/><br/>
                                 {/* <span className={styles.subscriptionTypeGreen}>Free</span> */}
-                                <span className={styles.subscriptionTypeRed}>Paid</span>
+                                <span className={styles.subscriptionTypeRed}>{planType ? "Paid" : "Free"}</span>
                                 {/* <span className={styles.subscriptionTypeBlue}>Family</span> */}
-                                <span className={styles.subscriptionTypePurple}>Individual</span>
+                                {planType? 
+                                <span className={styles.subscriptionTypePurple}>{planType}</span>: null}
                             </p>
                             
                         </div>
