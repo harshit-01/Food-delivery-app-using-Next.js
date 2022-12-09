@@ -1,7 +1,7 @@
 import styles from '../styles/dashboard_cards.module.scss';
 import{ useState} from "react";
 import { Line,Pie } from "react-chartjs-2";
-import PhoneInTalkIcon from '@mui/icons-material/PhoneInTalk';
+import PhoneIcon from '@mui/icons-material/Phone';
 import DeliveryDiningIcon from '@mui/icons-material/DeliveryDining';
 import { CircularProgressbar,buildStyles  } from 'react-circular-progressbar';
 import 'react-circular-progressbar/dist/styles.css';
@@ -195,7 +195,7 @@ export default function DashboardCards(){
                         <div className={styles.col_right_up}>
                             <div>
                                 <p> Query resolved daily</p>
-                                <span style={{display:'flex',justifyContent: 'center',alignItems: 'center'}}> <PhoneInTalkIcon size="large" color="primary"/> <p style={{paddingLeft:"10px"}}>2500</p> </span>
+                                <span style={{display:'flex',justifyContent: 'center',alignItems: 'center'}}> <PhoneIcon size="large" color="primary"/> <p style={{paddingLeft:"10px"}}>2500</p> </span>
                             </div>
                         </div>
                     </div>
