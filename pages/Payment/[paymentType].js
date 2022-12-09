@@ -57,14 +57,28 @@ export default function PaymentType(){
                 cvv:cvv
             }]);
             // alert("Payment Successful");
-            handleSnackBar('success');
-            localStorage.removeItem('name');
-            setTimeout(function(){
-                router.push('/TrackOrder')
-            },4000)
+            if(plan === "Family" || plan === "Individual"){
+                handleSnackBarPlan('success');
+                setTimeout(function(){
+                    router.push('/Menu')
+                },1000)
+            }
+            else{
+                handleSnackBar('success');
+                localStorage.removeItem('name');
+                setTimeout(function(){
+                    router.push('/TrackOrder')
+                },4000)
+            }
         }
         // console.log(formVal,rating,restaurantReview,appReview);
     }
+    const handleSnackBarPlan = (val) => {
+        if(val === 'success'){
+            setOpen({...open,val:true,message: 'Plan purchased successfully'});
+        }
+        setSeverity(val)
+    };
     const handleSnackBar = (val) => {
         if(val === 'success'){
             setOpen({...open,val:true,message: 'Payment successful. We will sent you the delivery guy details via email. So please check your email. Your order will be arriving soon.'});
@@ -81,6 +95,11 @@ export default function PaymentType(){
         
         setOpen({...open,val:false,message: ''});
     };
+    const handleCancelOrder = ()=>{
+        localStorage.removeItem("TotalPayment");
+        localStorage.removeItem("name");
+        router.push('/Menu');
+    }
     
     return(
         <div className={styles.paymentContainer}>
@@ -90,6 +109,10 @@ export default function PaymentType(){
                     <p>Payment through UPI/wallet</p>
                     <Image src = {Payment} width= "200" height="200"></Image><br/>
                     <a href="https://docs.google.com/forms/d/e/1FAIpQLSfvq4TRKwTgv140b_tHZBDloJYkluI7MWf_-7oxyP_AEsbGNQ/viewform?usp=sf_link" target="_blank" rel="noopener noreferrer">Click here to pay via UPI/wallet</a>
+                    <div style={{color:"black", marginTop:"10px",fontWeight:"bold"}}>OR</div>
+                    <div className="cancelOrderBtn">
+                        <Button variant="outlined" color="error" sx ={{width:"35%",marginTop: "20px"}} onClick={handleCancelOrder}>Cancel Order</Button>
+                    </div>
                 </div>
                 <div className={styles.col2}>
                     <div className={styles.card}>
@@ -105,7 +128,7 @@ export default function PaymentType(){
                             <label htmlFor="cvv">CVV</label>
                             <input type="number" max ="3" name="cvv" placeholder="123" required></input>
                             <label htmlFor="Amount">Amount to Pay</label>
-                            <input type="text"  name="amount" placeholder="Rs 5000" value ={plan === "Family" ? "Rs 400" : plan === "Individual" ? "Rs 300":amount}required></input>
+                            <input type="text"  name="amount" placeholder="Rs 5000" value ={plan === "Family" ? "Rs 400" : plan === "Individual" ? "Rs 300":amount.toFixed(2)}required></input>
                             {/* <input type="submit" onClick={handleClick}></input> */}
                             <Button  variant="outlined" color="success" sx ={{width:"40%",marginTop: "20px"}} onClick={handleClick}>Pay</Button>
                         </form>

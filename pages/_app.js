@@ -83,11 +83,12 @@ function MyApp({ Component, pageProps }) {
     return <Signup changeSignupStatus={changeSignupStatus}/>
   }
   else if(router.route !== '/Login' && isLoggedIn === false){
-    if(router.route !== '/' ){
+    console.log(router.route)
+    if(router.route !== '/' && router.route !== '/Menu' && router.route !== '/Dashboard' && router.route !== '/Cart' && router.route !== '/Payment'&& router.route !== '/Profile'&& router.route !== '/Plans' && router.route !== '/Reviews'){
       return <ErrorPage x={true}/>
     }
     else{
-      return <Signup changeSignupStatus={changeSignupStatus}/>
+      return <></>
     }
   }
   else if(router.route === '/Login' && (isLoggedIn === false)){

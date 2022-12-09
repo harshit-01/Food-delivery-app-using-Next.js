@@ -16,3 +16,29 @@
   line-height: 1.15;
   font-size: 4rem;
 }
+
+.tableBtn{
+  display: flex;
+}
+.tableContent{
+  padding-top:5px;
+  width:50%;
+}
+.tableOrderBtn{
+  width:50%;
+  text-align: right;
+}
+@media (max-width:500px){
+  .tableBtn{
+    flex-direction: column
+  }
+  .tableContent{
+    width:100%;
+  }
+  .tableOrderBtn{
+    text-align: left;
+    margin-left:2px;
+    width:100%;
+  }
+}
+

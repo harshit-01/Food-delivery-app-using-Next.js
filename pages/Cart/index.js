@@ -11,6 +11,7 @@ import Link from 'next/link'
 import { useRouter } from 'next/router';
 import axios from 'axios'
 import { getCookie,hasCookie } from 'cookies-next';
+import styles from "../../styles/Home.module.css"
 // import { ComponentToPrint } from './ComponentToPrint';
 // import dynamic from 'next/dynamic'
 
@@ -59,7 +60,7 @@ export default function Cart() {
         }
         localStorage.setItem("TotalPayment",JSON.stringify(a))
         
-        return a;
+        return a.toFixed(2);
     }
 
     function priceRow(qty, unit) {
@@ -105,7 +106,7 @@ export default function Cart() {
     const invoiceTaxes = TAX_RATE * invoiceSubtotal;
     const invoiceTotal = invoiceTaxes + invoiceSubtotal;
     return (
-    <div style={{margin:"auto",marginTop:"30px",width:"80%",height:"105vh"}} ref={componentRef}>
+    <div style={{margin:"auto",marginTop:"20px",width:"80%",height:"102vh"}} ref={componentRef}>
         <p style={{textAlign:"center",fontSize:"24px",fontWeight:"bold",color:"rgb(27, 118, 160)"}}>Invoice {billContent && billContent.length > 0 ? '(' + `${billContent[0]?.name}` +')':null}</p>
         <TableContainer component={Paper}>
         <Table sx={{ minWidth: 700,border:"1px solid gray" }} aria-label="spanning table">
@@ -156,22 +157,30 @@ export default function Cart() {
                 <TableCell  sx={{ fontWeight:"bold",fontSize:"14px"}}>Deliver to Address</TableCell>
                 <TableCell>{details?.address}</TableCell>
             </TableRow>
+            <TableRow>
+                <TableCell  sx={{ fontWeight:"bold",fontSize:"14px"}}>Order Time</TableCell>
+                <TableCell>{Date().split('G')[0]}</TableCell>
+            </TableRow>
             </TableBody>
         </Table>
         </TableContainer>
-        <small>*Taxes include GST and delivery charges.</small><br/>
-        <small>*While printing invoice please select <strong>landscape</strong> mode.</small><br/>
-        <div style={{width:"100%",textAlign: 'right'}}>
-            <Link href="javascript:window.print()">
-                <Button variant="outlined" color="warning" sx={{mt:2,mb:2,fontSize:"14px"}}>
-                    Download Invoice
-                </Button>
-            </Link>
-            <Link href="/Payment/Order">
-                <Button variant="outlined" sx={{mt:2,mb:2,ml:2,fontSize:"14px"}}>
+        <div className={styles.tableBtn}>
+            <div className={styles.tableContent}>
+                <small>*Taxes include GST and delivery charges.</small><br/>
+                <small>*While printing invoice please select <strong>landscape</strong> mode.</small><br/>
+            </div>
+            <div className={styles.tableOrderBtn}>
+                <Link href="javascript:window.print()">
+                    <Button variant="outlined" color="warning" sx={{mt:2,mb:1,mr:1,fontSize:"14px"}}>
+                        Download Invoice
+                    </Button>
+                </Link>
+                <Link href="/Payment/Order">
+                    <Button variant="outlined" sx={{mt:2,mb:1,fontSize:"14px"}}>
                         Order
-                </Button>
-            </Link>
+                    </Button>
+                </Link>
+            </div>
         </div>
     </div>
   );

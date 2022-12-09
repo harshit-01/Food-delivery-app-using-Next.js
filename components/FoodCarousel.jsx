@@ -104,7 +104,7 @@ function FoodCarousel() {
             onClick={handleNext}
             disabled={activeStep === maxSteps - 1}
           >
-            Next
+            {/* Next */}
             {theme.direction === 'rtl' ? (
               <KeyboardArrowLeft />
             ) : (
@@ -119,7 +119,7 @@ function FoodCarousel() {
             ) : (
               <KeyboardArrowLeft />
             )}
-            Back
+            {/* Back */}
           </Button>
         }
       />
