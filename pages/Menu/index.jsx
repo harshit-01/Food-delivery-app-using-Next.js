@@ -46,7 +46,7 @@ export default function Menu({foodItems}){
             setLoading(false)
         }
     }
-    console.log("loading",loading)
+    console.log("loading",loading,foodItems)
     return (
         <Box sx={{ flexGrow: 1}}>
             <Grid container spacing={{ xs: 2, md: 3 }} columns={{ xs: 2, sm: 12, md: 12,lg:12 }} sx={{
@@ -58,12 +58,12 @@ export default function Menu({foodItems}){
                 // console.log(val.id,val.name,x,a?.src,val);
                 return (
                 <Grid xs={2} sm={4} md={3} lg={3} key={val.id} >
-                    <Card sx={{ maxWidth: 225,cursor:"pointer" }} onClick={(e)=>{openItem(val.id)}}>
+                    <Card sx={{ maxWidth: 240,minHeight:390,cursor:"pointer" }} onClick={(e)=>{openItem(val.id)}}>
                         <img
                             ref={imgRef}
                             // component="img"
-                            width="225px"
-                            height = "170px"
+                            width="240px"
+                            height = "180px"
                             src={loading === false? val.img: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTuAu1bqip99lKWluZil7SW5nT-q6ovGZcGVw&usqp=CAU"}
                             alt="Food dishes"
                             onLoad={handleLoad} 
@@ -75,14 +75,24 @@ export default function Menu({foodItems}){
                             <Typography sx={{fontSize:"14px",fontWeight:"bold"}}  color="text.secondary">
                             {val.type}
                             </Typography>
+                            <Typography sx={{fontSize:"14px",fontWeight:"bold",color:"rgb(27, 118, 160)"}}>
+                            {/* <p>Restaurants : </p> */}
+                            {val.restaurant.map((resName,id)=>{
+                                return (
+                                    <>
+                                        <span>#{resName.name} </span>
+                                        {id === 1 ? <br />:null}
+                                    </>
+                                )
+                            })}
+                            </Typography>
                         </CardContent>
-                        <CardActions>
-                        <IconButton color="primary" aria-label="Add to cart" sx={{margin:"auto"}} onClick={(e)=>{openItem(val.id)}}>
-                            <Tooltip title={`Add ${x} to Cart`} arrow placement="right">
-                                <AddCircleIcon />
-                            </Tooltip>
-                        </IconButton>
-
+                        <CardActions sx={{marginTop:"auto"}}>
+                            <IconButton color="primary" aria-label="Add to cart" sx={{margin:"auto"}} onClick={(e)=>{openItem(val.id)}}>
+                                <Tooltip title={`Add ${x} to Cart`} arrow placement="right">
+                                    <AddCircleIcon />
+                                </Tooltip>
+                            </IconButton>
                         </CardActions>
                     </Card>
                 </Grid>

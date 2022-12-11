@@ -20,12 +20,12 @@ export const foodItems = [
             "rating":getRandomFloat(1,5)
           },
           {
-            "name":"BTW",
+            "name":"Bikaner",
             "price":getRandomInteger(15,20),
             "rating":getRandomFloat(1,5)
           },
           {
-            "name":"Bikaner",
+            "name":"BTW",
             "price":getRandomInteger(15,20),
             "rating":getRandomFloat(1,5)
           },
@@ -68,12 +68,12 @@ export const foodItems = [
             "rating":getRandomFloat(1,5)
           },
           {
-            "name":"Nathu",
+            "name":"Regency",
             "price":getRandomInteger(100,150),
             "rating":getRandomFloat(1,5)
           },
           {
-            "name":"Regency",
+            "name":"Nathu",
             "price":getRandomInteger(100,150),
             "rating":getRandomFloat(1,5)
           },
@@ -82,30 +82,6 @@ export const foodItems = [
 
     {
       "id": 3,
-      "name":"Tikki",
-      "img":"https://www.chefkunalkapur.com/wp-content/uploads/2022/04/aloo-tikki-chaat-2-1300x975.jpg?v=1648913714",
-      "type":"North Indian",
-      "restaurant":[
-          {
-            "name":"BTW",
-            "price":getRandomInteger(250,280),
-            "rating":getRandomFloat(1,5)
-          },
-          {
-            "name":"Halidram",
-            "price":getRandomInteger(250,280),
-            "rating":getRandomFloat(1,5)
-          },
-          {
-            "name":"VHURPS Chat Bhandar",
-            "price":getRandomInteger(200,250),
-            "rating":getRandomFloat(1,5)
-          },
-      ]
-    },
-
-    {
-      "id": 4,
       "name":"VegPizza",
       "img":"https://www.vegrecipesofindia.com/wp-content/uploads/2020/11/pizza-recipe-2-500x500.jpg",
       "type":"Italian",
@@ -122,6 +98,30 @@ export const foodItems = [
           },
           {
             "name":"Lapino",
+            "price":getRandomInteger(200,250),
+            "rating":getRandomFloat(1,5)
+          },
+      ]
+    },
+
+    {
+      "id": 4,
+      "name":"Tikki",
+      "img":"https://www.chefkunalkapur.com/wp-content/uploads/2022/04/aloo-tikki-chaat-2-1300x975.jpg?v=1648913714",
+      "type":"North Indian",
+      "restaurant":[
+          {
+            "name":"BTW",
+            "price":getRandomInteger(250,280),
+            "rating":getRandomFloat(1,5)
+          },
+          {
+            "name":"Halidram",
+            "price":getRandomInteger(250,280),
+            "rating":getRandomFloat(1,5)
+          },
+          {
+            "name":"VHURPS Chat Bhandar",
             "price":getRandomInteger(200,250),
             "rating":getRandomFloat(1,5)
           },
