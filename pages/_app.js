@@ -84,7 +84,7 @@ function MyApp({ Component, pageProps }) {
   }
   else if(router.route !== '/Login' && isLoggedIn === false){
     console.log(router.route)
-    if(router.route !== '/' && router.route !== '/Menu' && router.route !== '/Dashboard' && router.route !== '/Cart' && router.route !== '/Payment'&& router.route !== '/Profile'&& router.route !== '/Plans' && router.route !== '/Reviews'){
+    if(router.route !== '/' && router.route !== '/Menu' && router.route !== '/Dashboard' && router.route !== '/Cart' && router.route !== '/Payment'&& router.route !== '/Profile'&& router.route !== '/Plans' && router.route !== '/Reviews' && router.route !== '/Menu/[id]'){
       return <ErrorPage x={true}/>
     }
     else{

@@ -7,16 +7,21 @@ import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
 import Button from '@mui/material/Button';
+import IconButton from '@mui/material/IconButton';
+import RemoveCircleIcon from '@mui/icons-material/RemoveCircle';
+import AddCircleIcon from '@mui/icons-material/AddCircle';
 import Link from 'next/link'
 import { useRouter } from 'next/router';
 import axios from 'axios'
 import { getCookie,hasCookie } from 'cookies-next';
 import styles from "../../styles/Home.module.css"
+import { pink,red } from '@mui/material/colors';
 // import { ComponentToPrint } from './ComponentToPrint';
 // import dynamic from 'next/dynamic'
 
 
-export default function Cart() {
+export default function Cart({cartVal}) {
+    // console.log(cartVal);
     const router = useRouter();
     const [details,setDetails] = React.useState("");
     const [billContent,setBillContent] = React.useState([]);
@@ -51,7 +56,7 @@ export default function Cart() {
         }
         handler();
     }, [])
-    // console.log(details);
+    // console.log(details,billContent);
     const componentRef = React.useRef();
     const TAX_RATE = 0.20;
     function ccyFormat(num) {
@@ -80,6 +85,44 @@ export default function Cart() {
     function subtotal(items) {
         return items.map(({ price }) => price).reduce((sum, i) => sum + i, 0);
     }
+    const handleAddDish = (val)=>{
+        // console.log(val)
+        let temp = JSON.parse(localStorage.getItem("name")) || [];
+        if(temp && temp.length > 0){
+            // console.log(temp)
+            const tempObject = {
+                name : temp[0].name,
+                price : temp[0].price,
+                dish : val.desc,
+                // qty: val.qty + 1
+            }
+            console.log(tempObject);
+            temp.push(tempObject);
+            localStorage.setItem("name",JSON.stringify(temp))
+            setBillContent(JSON.parse(localStorage.getItem("name")));
+            cartVal();
+        }
+    }
+    const handleRemoveDish = (val)=>{
+        // console.log(val)
+        let temp = JSON.parse(localStorage.getItem("name")) || [];
+        if(temp && temp.length > 0){
+            let ind = -1;
+            for(let i=temp.length-1; i>=0; i--){
+                if(temp[i].dish === val.desc){
+                    ind = i;
+                    break;
+                }
+            }
+            if(ind !== -1){
+                temp.splice(ind, 1);
+                // console.log(temp)
+                localStorage.setItem("name",JSON.stringify(temp))
+                setBillContent(JSON.parse(localStorage.getItem("name")));
+                cartVal();
+            }
+        }
+    }
     let rows = [];
     console.log(billContent.length)
     if(billContent?.length > 0) {
@@ -106,7 +149,7 @@ export default function Cart() {
             rows.push(createRow(val.dish, a[c],val.price));
          })
     }
-
+    console.log(rows)
     const invoiceSubtotal = subtotal(rows);
     const invoiceTaxes = TAX_RATE * invoiceSubtotal;
     const invoiceTotal = invoiceTaxes + invoiceSubtotal;
@@ -124,7 +167,8 @@ export default function Cart() {
             </TableRow>
             <TableRow>
                 <TableCell sx={{ fontWeight:"bold",fontSize:"14px"}}>Desc</TableCell>
-                <TableCell align="right" sx={{ fontWeight:"bold",fontSize:"14px"}}>Qty.</TableCell>
+                <TableCell align="right" sx={{ fontWeight:"bold",fontSize:"14px"}}>Qty.
+                <span style={{visibility:"hidden"}}>Hello</span></TableCell>
                 <TableCell align="right" sx={{ fontWeight:"bold",fontSize:"14px"}}>Price</TableCell>
                 <TableCell align="right" sx={{ fontWeight:"bold",fontSize:"14px"}}>Sum</TableCell>
             </TableRow>
@@ -133,7 +177,15 @@ export default function Cart() {
             {rows.map((row) => (
                 <TableRow key={row.desc}>
                 <TableCell>{row.desc}</TableCell>
-                <TableCell align="right">{row.qty}</TableCell>
+                <TableCell align="right">
+                <IconButton aria-label="add" onClick={()=>handleAddDish(row)}>
+                    <AddCircleIcon  color="success" />
+                </IconButton>
+                    {row.qty}
+                <IconButton aria-label="remove" onClick={()=>handleRemoveDish(row)}>
+                    <RemoveCircleIcon sx={{ color: red[500] }}/>
+                </IconButton>
+                </TableCell>
                 <TableCell align="right">{row.unit}</TableCell>
                 <TableCell align="right">{ccyFormat(row.price)}</TableCell>
                 </TableRow>

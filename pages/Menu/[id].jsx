@@ -81,7 +81,7 @@ export default function Item({cartVal}){
                     price : val.price,
                     dish : foodItem.name
                 }
-                item.unshift(x);
+                item.push(x);
                 setCartItems(item);
                 localStorage.setItem("name",JSON.stringify(item));
                 setSnackbarState({...snackbar,open:true,message:`${val.name} ${foodItem.name} has been successfully added to the cart.`});
