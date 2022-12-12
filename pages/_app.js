@@ -27,7 +27,7 @@ function MyApp({ Component, pageProps }) {
     }
     if (typeof window !== "undefined") {
       if(localStorage.getItem("signupStatus")){
-        setIsSignedIn(localStorage.getItem("signupStatus"));
+        setIsSignedIn(JSON.parse(localStorage.getItem("signupStatus")));
       }
     }
     handler();
@@ -50,7 +50,7 @@ function MyApp({ Component, pageProps }) {
   }
   const changeSignupStatus= ()=>{
     if(localStorage.getItem("signupStatus")){
-      setIsSignedIn(localStorage.getItem("signupStatus"));
+      setIsSignedIn(JSON.parse(localStorage.getItem("signupStatus")));
     }
     router.push('/Login');
   }
@@ -88,7 +88,14 @@ function MyApp({ Component, pageProps }) {
       return <ErrorPage x={true}/>
     }
     else{
-      return <></>
+      if(router.route === '/' && isSignedIn === true){
+        return (
+          <Login changeLoginStatus={changeLoginStatus}/>
+        )
+      }
+      else{
+        return <></>
+      }
     }
   }
   else if(router.route === '/Login' && (isLoggedIn === false)){
