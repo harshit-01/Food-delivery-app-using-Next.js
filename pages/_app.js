@@ -106,6 +106,11 @@ function MyApp({ Component, pageProps }) {
           </Layout>
         )
       }
+      else{
+        return (
+          <Login changeLoginStatus={changeLoginStatus}/>
+        )
+      }
     }
   }
 }
