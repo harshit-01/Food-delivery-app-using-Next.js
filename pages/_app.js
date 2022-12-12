@@ -90,7 +90,7 @@ function MyApp({ Component, pageProps }) {
     else{
       if(router.route === '/' && isSignedIn === true){
         return (
-          <Login changeLoginStatus={changeLoginStatus}/>
+          <Signup changeSignupStatus={changeSignupStatus}/>
         )
       }
       else{
