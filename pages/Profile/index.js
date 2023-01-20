@@ -326,7 +326,7 @@ export default function Profile(){
                                 <div className={styles.upload}>
                                     <p>Add Display Picture</p>
                                     <div>
-                                        {(userDetails?.profilePic && userDetails.profilePic.length != 0) || (image?.length != 0)  ? <img src ={userDetails.profilePic || image} id="imagePreview" />:<img src="https://static-media-prod-cdn.itsre-sumo.mozilla.net/static/default-FFA-avatar.2f8c2a0592bda1c5.png"></img>
+                                        {(userDetails?.profilePic && userDetails.profilePic.length != 0) || (image?.length != 0)  ? <img src ={userDetails.profilePic || image} id="imagePreview" />:<img src="https://cdn.icon-icons.com/icons2/1378/PNG/512/avatardefault_92824.png"></img>
                                         }
                                     </div>
                                     <FileBase64 type="file" multiple={false} onDone={({base64}) => {

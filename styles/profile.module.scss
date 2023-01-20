@@ -71,6 +71,9 @@
                     height:450px; 
                     margin-bottom: 10px;
                 }
+                @media (max-width: 400px){
+                    height:480px; 
+                }
                 .userData{
                     width:100%;
                     margin-bottom:15px;
